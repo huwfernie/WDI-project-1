@@ -6,6 +6,7 @@
 
 body {
   background-color: lightgrey;
+
 }
 
 .sideBar, .topBar, .board, .centerpiece, .node, .topBar, .sideBar {
@@ -15,37 +16,50 @@ body {
   display: inline-block;
   font-size: 0px;
   box-sizing: border-box;
+  border-radius: 5px
+
 }
 
-.sideBar, .topBar {
-  cursor: pointer;
+.centerpiece {
+  font-size: 70px;
+  text-align: center;
+  vertical-align:top;
+  padding-top: 40px;
+  visibility: hidden;
+
 }
+
 
 .board {
+
   width: 200px;
   height: 200px;
   border: 0px solid black;
-  background: red;
+  background: white;
   box-sizing: content-box;-box;
   overflow: auto;
+
 }
 
 .centerpiece {
   background: white;
   height: 180px;
   width: 180px;
+  vertical-align:top;
 }
 
 .node {
   background: black;
   height: 10px;
   width: 10px;
+  vertical-align:top;
 }
 
 .topBar {
   background: red;
   height: 10px;
   width: 180px;
+  vertical-align:top;
 
 }
 
@@ -53,6 +67,7 @@ body {
   background: salmon;
   height: 180px;
   width: 10px;
+  vertical-align:top;
 }
 
 
@@ -60,7 +75,7 @@ body {
   text-align: center;
 }
 
-.resetButton {
+#resetButton {
   padding: 5px 10px;
 }
 
@@ -68,15 +83,31 @@ body {
 
 .active {
   background: green;
+  vertical-align:top;
+  cursor: pointer;
 }
 
 .active:hover {
   background: grey;
+  vertical-align:top;
 }
 
 
 
 
 .clicked {
-  background: black;
+  background: lightblue;
+  vertical-align:top;
+}
+
+
+/* Dynamic board CSS starts here */
+
+.dynamicBoard {
+  background: purple;
+  width: 400px;
+  height: 400px;
+  border: 0px solid black;
+  box-sizing: content-box;-box;
+  overflow: auto;
 }

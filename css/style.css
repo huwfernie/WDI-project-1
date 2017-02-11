@@ -9,15 +9,25 @@ body {
 
 }
 
-.sideBar, .topBar, .board, .centerpiece, .node, .topBar, .sideBar {
+.sideBar, .topBar, .board, .centerpiece, .node {
   padding: 0;
   margin: 0;
   border: 0;
-  display: inline-block;
   font-size: 0px;
   box-sizing: border-box;
-  border-radius: 5px
+  border-radius: 5px;
+  /*display: inline-block;*/
+}
 
+.sideBar, .topBar, .centerpiece, .node {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  font-size: 0px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  float: left;
+  /*display: inline-block;*/
 }
 
 .centerpiece {
@@ -25,7 +35,7 @@ body {
   text-align: center;
   vertical-align:top;
   padding-top: 40px;
-  visibility: hidden;
+  /*visibility: hidden;*/
 
 }
 
@@ -45,7 +55,7 @@ body {
   background: white;
   height: 180px;
   width: 180px;
-  vertical-align:top;
+  /*vertical-align:top;*/
 }
 
 .node {
@@ -105,9 +115,31 @@ body {
 
 .dynamicBoard {
   background: purple;
-  width: 400px;
-  height: 400px;
+  width: 390px;
+  height: 390px;
   border: 0px solid black;
   box-sizing: content-box;-box;
   overflow: auto;
+  margin: 0 auto;
+}
+
+.superBoard {
+  background: white;
+  width: 390px;
+  height: 390px;
+  border: 0px solid black;
+  box-sizing: content-box;-box;
+  overflow: auto;
+  margin: 0 auto;
+  border: 20px solid white;
+  border-radius: 20px;
+}
+
+.updateDiv {
+  text-align: center;
+}
+
+.update {
+  text-align: center;
+  padding: 0 50px;
 }

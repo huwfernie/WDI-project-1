@@ -112,7 +112,7 @@ $(() => {
   // const $board = $('.board'); not used any more
   const $centerpiece = $('.centerpiece');
 
-  //$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+  $centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
   $middle.html(`Lets Go ${players[playerIndex]}`);
   updatePlayerScores();
 
@@ -129,6 +129,8 @@ $(() => {
       freeGo = 0;
 
       changePlayer();
+
+      whoWins();
     }// end of amIActive
   });// end of $active.on(...
 
@@ -300,7 +302,20 @@ $(() => {
     $right.html(`Player 2 score : ${playerScores[1]}`);
   }
 
+  function whoWins(){
+    if (playerScores[0] + playerScores[1] === ( x*y ) ){  // all squares guessed
+      console.log(`we have a winner`);
+      if (playerScores[0] > playerScores[1]) {
+        $middle.html('Player 1 wins');
+      } else {
+        $middle.html('Player 2 wins');
+      }
+      $left.html('');
+      $right.html('');
+    }
+  } // end of whoWins
  // End of funcitons, this space is for the funnky stuff!! -----------------
+
 
 
 

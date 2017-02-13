@@ -5,10 +5,12 @@ console.log('Hello Huw');
 
 $(() => {
 
+
+
 //this is some funky stuff, don't expect it to be here forever!! ----------
 
-  const x = 2;  // x and y are the number of boxes to make
-  const y = 2;  // on the board
+  const x = 5;  // x and y are the number of boxes to make
+  const y = 5;  // on the board
 
   let xNodes = null;  // these are the elements needed to make
   let yNodes = null;  // the boxes
@@ -19,6 +21,16 @@ $(() => {
   console.log(yNodes);  // test
 
   let idCount = 1;  // counter for giving each element a unique id
+
+  // the start of the bit that makes the mega-board board!
+
+  //board width = x * 200 in px while each box is 100px total - 0 for the missing last node;
+  const boardWidth = 200 + ((x-1)*190);
+  const boardHeight = 200 + ((y-1)*190);
+
+  $('.megaBoard').css('width', `${boardWidth}px`);
+  $('.megaBoard').css('height', `${boardHeight}px`);
+
 
   const evenRow = ['node','topBar'];
   const oddRow = ['sideBar','centerpiece'];
@@ -51,7 +63,8 @@ $(() => {
 
       // finally create the div with class of thisDiv and id of idCount
       console.log(`buliding you a ${thisDiv} with id ${idCount}`);
-      $('.superBoard').append(`<div class=${thisDiv} id=${idCount}>`);
+      //$('.superBoard').append(`<div class=${thisDiv} id=${idCount}>`);
+      $('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
       //$('.superBoard').append(`<div class=${thisDiv}>`);
       // console.log(`id count ${idCount}`);
       idCount++;
@@ -293,6 +306,7 @@ $(() => {
     freeGo = 1;
     const initial = ((players[playerIndex]).split(''))[0];
     thisOne.html(initial);
+    thisOne.css('visibility', 'visible');
     playerScores[playerIndex]+=1;
     updatePlayerScores();
   }
@@ -305,9 +319,11 @@ $(() => {
   function whoWins(){
     if (playerScores[0] + playerScores[1] === ( x*y ) ){  // all squares guessed
       console.log(`we have a winner`);
-      if (playerScores[0] > playerScores[1]) {
+      if (playerScores[0] === playerScores[1]) {
+        $middle.html('We have a draw!!!');
+      } else if (playerScores[0] > playerScores[1]) {
         $middle.html('Player 1 wins');
-      } else {
+      } else { // player[1] > player[0]
         $middle.html('Player 2 wins');
       }
       $left.html('');

@@ -5,7 +5,7 @@
 }*/
 
 body {
-  background-color: lightgrey;
+  background-color: #ae9898;
 
 }
 
@@ -35,8 +35,10 @@ body {
   text-align: center;
   vertical-align:top;
   padding-top: 40px;
-  /*visibility: hidden;*/
-
+  visibility: hidden;
+  background: white;
+  height: 180px;
+  width: 180px;
 }
 
 
@@ -51,12 +53,7 @@ body {
 
 }
 
-.centerpiece {
-  background: white;
-  height: 180px;
-  width: 180px;
-  /*vertical-align:top;*/
-}
+
 
 .node {
   background: black;
@@ -92,7 +89,7 @@ body {
 /* End of start-up styling */
 
 .active {
-  background: green;
+  background: #d0dbd0;
   vertical-align:top;
   cursor: pointer;
 }
@@ -106,7 +103,7 @@ body {
 
 
 .clicked {
-  background: lightblue;
+  background: #384b51;
   vertical-align:top;
 }
 
@@ -142,4 +139,16 @@ body {
 .update {
   text-align: center;
   padding: 0 50px;
+}
+
+.megaBoard {
+  background: #fafad3;
+  width: 590px;
+  height: 590px;
+  border: 0px solid black;
+  box-sizing: content-box;-box;
+  overflow: auto;
+  margin: 0 auto;
+  border: 20px solid white;
+  border-radius: 20px;
 }

@@ -10,22 +10,21 @@ $(() => {
   const x = 5;  // x and y are the number of boxes to make
   const y = 5;  // on the board
 
-  let xElements = null;  // these are the elements needed to make
-  let yElements = null;  // the boxes
+  let xNodes = null;  // these are the elements needed to make
+  let yNodes = null;  // the boxes
 
-  createNodes(x,y);   // takes x and y and sets xElements and yElements
+  createNodes(x,y);   // takes x and y and sets xNodes and yNodes
 
-  console.log(xElements);  //test
-  console.log(yElements);  // test
+  console.log(xNodes);  //test
+  console.log(yNodes);  // test
 
   let idCount = 1;  // counter for giving each element a unique id
 
   // the start of the bit that makes the mega-board board!
 
-  //board width = 10 + 135 + 10 px + 145 for each new square
-
-  const boardWidth = 155 + ((x-1)*145);
-  const boardHeight = 155 + ((y-1)*145);
+  //board width = x * 200 in px while each box is 100px total - 0 for the missing last node;
+  const boardWidth = 200 + ((x-1)*190);
+  const boardHeight = 200 + ((y-1)*190);
 
   $('.megaBoard').css('width', `${boardWidth}px`);
   $('.megaBoard').css('height', `${boardHeight}px`);
@@ -35,12 +34,11 @@ $(() => {
   const oddRow = ['sideBar','centerpiece'];
 
   //create the board before here! ------------------------------------------
-
-  for (let i=0; i<yElements; i++) {
+  for (let i=0; i<yNodes; i++) {
     // console.log(`y nodes(i): ${i}`);
     let thisDiv = null;
     let aIndex = null;
-    for (let j=0; j<xElements; j++) {
+    for (let j=0; j<xNodes; j++) {
       // console.log(`x nodes(j): ${j}`);
       // Create the div's here
       if (i%2 === 0) { // even rows - 0,2,4,6...
@@ -63,11 +61,44 @@ $(() => {
 
       // finally create the div with class of thisDiv and id of idCount
       console.log(`buliding you a ${thisDiv} with id ${idCount}`);
+      //$('.superBoard').append(`<div class=${thisDiv} id=${idCount}>`);
       $('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
+      //$('.superBoard').append(`<div class=${thisDiv}>`);
       // console.log(`id count ${idCount}`);
       idCount++;
     }
   }
+
+  $('.dynamicBoard').append('<div class="node">');
+  $('.dynamicBoard').append('<div class="topBar">');
+  $('.dynamicBoard').append('<div class="node">');
+  $('.dynamicBoard').append('<div class="topBar">');
+  $('.dynamicBoard').append('<div class="node">');
+  // Top row done
+  $('.dynamicBoard').append('<div class="sideBar">');
+  $('.dynamicBoard').append('<div class="centerpiece"">');
+  $('.dynamicBoard').append('<div class="sideBar">');
+  $('.dynamicBoard').append('<div class="centerpiece"">');
+  $('.dynamicBoard').append('<div class="sideBar">');
+  //middle row done
+  $('.dynamicBoard').append('<div class="node">');
+  $('.dynamicBoard').append('<div class="topBar">');
+  $('.dynamicBoard').append('<div class="node">');
+  $('.dynamicBoard').append('<div class="topBar">');
+  $('.dynamicBoard').append('<div class="node">');
+  // // bottom row done
+  // $('.dynamicBoard').append('<div class="active sideBar">');
+  // $('.dynamicBoard').append('<div class="centerpiece"">');
+  // $('.dynamicBoard').append('<div class="active sideBar">');
+  // $('.dynamicBoard').append('<div class="centerpiece"">');
+  // $('.dynamicBoard').append('<div class="active sideBar">');
+  // //middle row done
+  // $('.dynamicBoard').append('<div class="node">');
+  // $('.dynamicBoard').append('<div class="active topBar">');
+  // $('.dynamicBoard').append('<div class="node">');
+  // $('.dynamicBoard').append('<div class="active topBar">');
+  // $('.dynamicBoard').append('<div class="node">');
+  // bottom row done
 
   // add the "active" class to sidebars and topBars so the onClick's are added
   $('.sideBar').addClass('active');
@@ -75,21 +106,16 @@ $(() => {
 
 
 // run this on load!!
-  const player1 = {name: 'Roser', score: 0, color: '#abc'};
-  const player2 = {name: 'Huw', score: 0, color: '#abc'};
-  //const squares = {};
-  //const players = ['Aplayer 1','Bplayer 2'];
-  let playerNow = 1;
-  let playerNowName = null;
+  const players = ['Aplayer 1','Bplayer 2'];
+  let playerIndex = 0;
   let playCount = null;
-  //const playerScores = [0,0];
+  const playerScores = [0,0];
   const $active = $('.active');
   const $reset = $('#resetButton');
   const $topBar = $('.topBar');
   const $sideBar = $('.sideBar');
   //const $update = $('.update');
   const $middle = $('#middle');
-  const $middleEdit = $('#middleEdit');
   const $right = $('#right');
   const $left = $('#left');
   let freeGo = 0;
@@ -98,8 +124,7 @@ $(() => {
   const $centerpiece = $('.centerpiece');
 
   $centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
-  $middle.html(`Lets Go `);
-  $middleEdit.html(player1.name);
+  $middle.html(`Lets Go ${players[playerIndex]}`);
   updatePlayerScores();
 
   // create an anon. function for each click on the sideBar
@@ -111,8 +136,10 @@ $(() => {
 
       lowerTheClass(e); // reads the html number and lowers it!
 
+      playCount = playCount + 1 - freeGo;
+      freeGo = 0;
+
       changePlayer();
-      changeCursor();
 
       whoWins();
     }// end of amIActive
@@ -121,7 +148,6 @@ $(() => {
 
   // add a listener to the reset button
   $reset.on('click', function() {
-    //playThis(`sounds/pen.m4a`); //play sound
     reset();
   });
 
@@ -178,11 +204,7 @@ $(() => {
     $sideBar.removeClass('clicked');
     $sideBar.addClass('active');
     $centerpiece.html(`4`);
-    $centerpiece.css('visibility', 'hidden');
-    player1.score = 0;
-    player2.score = 0;
-    updatePlayerScores();
-    playerNow = 1;
+    playerIndex = 0;
   }// end of reset function
 
   function changeBarClassesAfterClick(e) {
@@ -203,21 +225,39 @@ $(() => {
   }
 
 
+  // function isSquareStillActive() {
+  //   console.log(`isSquareStillActive`);
+  //   console.log($centerpiece.html());
+  //   if ($centerpiece.html() > 0){
+  //     // square still active
+  //     // do nothing
+  //     return true;
+  //   } else {
+  //     // square just got closed
+  //     console.log(`you got one!`);
+  //     // -- player score goes up by one
+  //     // -- background of square changes, gets an initial.
+  //     // -- visibility goes from hidden to visible.
+  //     $centerpiece.css('visibility', 'visible');
+  //     return false;
+  //   }
+  // }
+
   function createNodes(x,y) {
-    xElements = 1 + (2*x);
-    yElements = 1 + (2*y);
+    xNodes = 1 + (2*x);
+    yNodes = 1 + (2*y);
   }
 
 
   function lowerTheClass(e) {
     if ( $(e.target).hasClass('topBar')  ) {
-      // change html of elements with id +- xElements
+      // change html of elements with id +- xNodes
       console.log(`what is my topBar ID?`);
       const temp = $(e.target).attr('id');
       console.log(`how about .. ${temp}`);
 
       console.log(`above`);
-      const aboveMe = parseInt(temp) - xElements;
+      const aboveMe = parseInt(temp) - xNodes;
       const $aboveMe = $(`#${aboveMe}`);
       let upScore = $aboveMe.html();
       upScore--;
@@ -227,7 +267,7 @@ $(() => {
       }
 
       console.log(`below`);
-      const belowMe = parseInt(temp) + xElements;
+      const belowMe = parseInt(temp) + xNodes;
       const $belowMe = $(`#${belowMe}`);
       let downScore = $belowMe.html();
       downScore--;
@@ -262,75 +302,42 @@ $(() => {
     }
   }
 
-  // playerIndex = 0; // Why is this here!!!!???????
+  playerIndex = 0;
 
   function changePlayer() {
-    playCount = playCount + 1 - freeGo;
-    //playerIndex = playCount%2;
-    //console.log(`player index is ${playerIndex}`);
-    if (playCount%2 === 1) {
-      playerNowName = player2.name;
-      playerNow = 2;
-      //alert(playerNowName);
-    } else {
-      playerNowName = player1.name;
-      playerNow = 1;
-      //alert(playerNowName);
-    }
-
-    if (freeGo === 1) {
-      $middle.html(`Play again `);
-    } else {
-      $middle.html(`Lets Go `);
-      $middleEdit.html(`${playerNowName}`);
-    }
-    freeGo = 0;
-  }
-
-  function changeCursor() {
-    if (playerNow === 2){
-      console.log('changeCursor');
-      $('.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
-    } else {
-      $('.megaBoard').css('cursor', 'url(images/pencilMedium.png) 10 113,url(images/pencilSmall.png) 4 30,auto');
-    }
+    playerIndex = playCount%2;
+    console.log('player index');
+    console.log(playerIndex);
+    $middle.html(`Lets Go ${players[playerIndex]}`);
   }
 
   function claimSquare(thisOne) {
     // playerScores[playerNow]
     freeGo = 1;
-    const initial = ((playerNowName).split(''))[0];
+    const initial = ((players[playerIndex]).split(''))[0];
     thisOne.html(initial);
     thisOne.css('visibility', 'visible');
-    if (playerNow === 2) {
-      player2.score += 1;
-    } else {
-      player1.score += 1;
-    }
+    playerScores[playerIndex]+=1;
     updatePlayerScores();
-
   }
 
   function updatePlayerScores() {
-    $left.html(`${player1.name} score : ${player1.score}`);
-    $right.html(`${player2.name} score : ${player2.score}`);
+    $left.html(`Player 1 score : ${playerScores[0]}`);
+    $right.html(`Player 2 score : ${playerScores[1]}`);
   }
 
   function whoWins(){
-    if (player1.score + player2.score === ( x*y ) ){  // all squares guessed
+    if (playerScores[0] + playerScores[1] === ( x*y ) ){  // all squares guessed
       console.log(`we have a winner`);
-      $middleEdit.html('');
-      if (player1.score === player2.score) {
+      if (playerScores[0] === playerScores[1]) {
         $middle.html('We have a draw!!!');
-      } else if (player1.score > player2.score) {
-        $middle.html(`${player1.name} wins`);
-        playThis(`sounds/tada.mp3`);
+      } else if (playerScores[0] > playerScores[1]) {
+        $middle.html('Player 1 wins');
       } else { // player[1] > player[0]
-        $middle.html(`${player2.name} wins`);
-        playThis(`sounds/pen.mp3`);
+        $middle.html('Player 2 wins');
       }
-      $left.html(player1.score);
-      $right.html(player2.score);
+      $left.html('');
+      $right.html('');
     }
   } // end of whoWins
  // End of funcitons, this space is for the funnky stuff!! -----------------
@@ -343,4 +350,4 @@ $(() => {
 
 
 
-}); // end of on-load
+});

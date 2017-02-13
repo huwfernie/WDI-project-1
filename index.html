@@ -6,37 +6,33 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/app.js" charset="utf-8"></script>
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
   </head>
     <body>
       <main>
-        <div class="board" id="0">
-          <div class="node"></div>
-          <div class="active topBar"></div>
-          <div class="node"></div>
-          <div class="active sideBar"></div>
-          <div class="centerpiece">4</div>
-          <div class="active sideBar"></div>
-          <div class="node"></div>
-          <div class="active topBar"></div>
-          <div class="node"></div>
-        </div> <!-- end of board -->
+        <header>
+          <div class="updateDiv"> <!--update div holds player info and scores-->
+            <span class="update" id="middle">2</span>
+            <span class="update" id="middleEdit">2</span>
+          </div>
+          <div class="playerNames">
+            <span class="update" id="left">1</span>
+
+            <span class="update" id="right">3</span>
+          </div>
+          <div class="instructions">
+            Instructions : Take it in turns to join the black dots, if you close a square you get 1 point and another turn, so think hard and don't give any squares away. The player with the most squares at the end of the game wins.
+          </div>
+        </header>
+
+        <p></p>
+
+        <div class="megaBoard">
+        </div> <!--End fo mega Board div made better with js-->
+
         <p>
         <div class="forResetButton"><button id="resetButton">reset</button></div>
         </p>
-        <div class="dynamicBoard">
-        </div> <!--End fo Dynamic Board div -->
-        <p>
-        <div class="updateDiv"> <!--update div holds player info and scores-->
-            <span class="update" id="left">1</span>
-            <span class="update" id="middle">2</span>
-            <span class="update" id="right">3</span>
-        </div>
-        </p>
-        <div class="superBoard">
-        </div> <!--End fo super Board div - made with js -->
-        <p>now for the megaBoard</p>
-        <div class="megaBoard">
-        </div> <!--End fo mega Board div made better with js-->
 
       </main>
       <footer></footer>

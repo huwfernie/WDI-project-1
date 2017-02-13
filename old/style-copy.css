@@ -6,10 +6,8 @@
 
 body {
   background-color: #ae9898;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 26px;
-  width: 90%;
-  margin: 0 auto;
+  cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
+
 }
 
 .sideBar, .topBar, .board, .centerpiece, .node {
@@ -30,21 +28,31 @@ body {
   box-sizing: border-box;
   border-radius: 5px;
   float: left;
+  /*display: inline-block;*/
 }
 
 .centerpiece {
   font-size: 70px;
   text-align: center;
   vertical-align:top;
-  padding-top: 10px;
+  padding-top: 40px;
   visibility: hidden;
   background: white;
-  height: 135px;
-  width: 135px;
+  height: 180px;
+  width: 180px;
 }
 
 
+.board {
 
+  width: 200px;
+  height: 200px;
+  border: 0px solid black;
+  background: white;
+  box-sizing: content-box;-box;
+  overflow: auto;
+
+}
 
 
 
@@ -59,7 +67,6 @@ body {
   background: red;
   height: 10px;
   width: 180px;
-  width: 135px;
   vertical-align:top;
 
 }
@@ -67,7 +74,6 @@ body {
 .sideBar {
   background: salmon;
   height: 180px;
-  height: 135px;
   width: 10px;
   vertical-align:top;
 }
@@ -93,6 +99,9 @@ body {
   background: grey;
   vertical-align:top;
 }
+
+
+
 
 .clicked {
   background: #384b51;
@@ -126,44 +135,11 @@ body {
 
 .updateDiv {
   text-align: center;
-  padding: 40px 0;
 }
 
 .update {
-  width: 25%
   text-align: center;
   padding: 0 50px;
-  text-align: center;
-}
-
-.update#left {
-  color: #e7e729;
-  /*background: red;*/
-    width: 40%;
-    float: left;
-}
-
-.update#middle {
-  color: #1927df;
-  font-size: 34px;
-  padding-right: 0;
-  /*background: purple;*/
-}
-
-.update#middleEdit {
-  color: #1927df;
-  font-size: 34px;
-  padding-left: 0;
-  text-align: left;
-  /*background: orange;*/
-}
-
-.update#right {
-  color: #c51414;
-  /*background: blue;*/
-  width: 40%;
-  float: right;
-  text-align: center;
 }
 
 .megaBoard {
@@ -176,5 +152,4 @@ body {
   margin: 0 auto;
   border: 20px solid white;
   border-radius: 20px;
-  cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
 }

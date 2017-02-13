@@ -6,6 +6,7 @@
 
 body {
   background-color: #ae9898;
+  cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
 
 }
 
@@ -91,7 +92,7 @@ body {
 .active {
   background: #d0dbd0;
   vertical-align:top;
-  cursor: pointer;
+  /*cursor: pointer;*/
 }
 
 .active:hover {

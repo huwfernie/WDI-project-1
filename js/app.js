@@ -5,8 +5,6 @@ console.log('Hello Huw');
 
 $(() => {
 
-
-
 //this is some funky stuff, don't expect it to be here forever!! ----------
 
   const x = 5;  // x and y are the number of boxes to make
@@ -211,9 +209,21 @@ $(() => {
 
   function changeBarClassesAfterClick(e) {
     console.log(`changeClassesAfterClick`);
+    playThis(`sounds/pen.m4a`); //play sound
     $(e.target).addClass('clicked');
     $(e.target).removeClass('active');
   }
+
+
+
+  // function that plays anything with the file path passed to is as (audio)
+  function playThis(audio) {
+    console.log(`audio is ${audio}`);
+    audio = new Audio(audio);
+    console.log(audio);
+    audio.play();
+  }
+
 
   // function isSquareStillActive() {
   //   console.log(`isSquareStillActive`);

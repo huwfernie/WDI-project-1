@@ -8,7 +8,6 @@ body {
   background-color: #ae9898;
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
-  width: 90%;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -129,16 +128,22 @@ body {
 .update {
   width: 25%
   text-align: center;
-  padding: 0 50px;
+  /*padding: 0 50px;*/
   text-align: center;
+  float: right;
+  margin: 30px;
+
 }
 
 #left {
   color: #e7e729;
   /*background: red;*/
-    width: 40%;
-    float: left;
-      text-align: center;
+  /*width: 40%;
+  float: left;*/
+  text-align: center;
+  margin-right: 70px;
+  text-shadow: 2px 2px black;
+
 }
 
 .update#middle {
@@ -146,6 +151,8 @@ body {
   font-size: 34px;
   padding-right: 0;
   /*background: purple;*/
+  float: right;
+  margin-right: 10px;
 }
 
 .update#middleEdit {
@@ -154,14 +161,18 @@ body {
   padding-left: 0;
   text-align: left;
   /*background: orange;*/
+  float: right;
+  width: 150px;
 }
 
 #right {
   color: #c51414;
   /*background: blue;*/
-  width: 40%;
-  float: right;
+  /*width: 40%;
+  float: right;*/
   text-align: center;
+    margin-right: 70px;
+    text-shadow: 2px 2px black;
 }
 
 .megaBoard {
@@ -175,6 +186,7 @@ body {
   border: 20px solid white;
   border-radius: 20px;
   cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
+  transform: rotate(-30deg);
 }
 
 .title {
@@ -241,20 +253,39 @@ body {
 }
 
 .welcome {
+  width: 90%;
   /*background: yellow;*/
 }
 
 .game {
- display: none;
+ /*display: none;*/
+ background-image: url(../images/background.jpg);
+ background-size: cover;
+ height: 100vh;
+
 }
 
 .gameButton {
   background: red;
-  margin-top: 25px;
+  margin: 25px;
   padding: 5px 10px;
   border: 2px solid white;
   border-radius: 10px;
   font-family: 'Permanent Marker', cursive;
   font-size: 20px;
   cursor: pointer;
+}
+
+.forGameButtons {
+  float: right;
+}
+
+.scoreboard {
+  float: right;
+}
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
 }

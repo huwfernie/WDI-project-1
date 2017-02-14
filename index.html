@@ -27,11 +27,9 @@
                   <input type="text" class="inputNames" placeholder="Player 1" id="player1"></p>
                 </div>
 
-                <!-- <a href="#game"> -->
                   <div class="playerNamesMiddle">
                     <div id="startGame">Start Game</div>
                   </div>
-                <!-- </a> -->
 
                 <div class="playerNamesLeft">
                   <span>Player 2 Name:</span>
@@ -53,14 +51,14 @@
 
 
           <header>
-            <div class="updateDiv"> <!--update div holds player info and scores-->
-              <span class="update" id="middle">2</span>
+            <div class="clearfix updateDiv"> <!--update div holds player info and scores-->
               <span class="update" id="middleEdit">2</span>
+              <span class="update" id="middle">2</span>
             </div>
-            <div class="playerNames">
-              <span class="update" id="left">1</span>
-
-              <span class="update" id="right">3</span>
+            <div class="scoreboard">
+              <div class="update" id="left">1</div>
+              <br>
+              <div class="update" id="right">3</div>
             </div>
             <!-- <div class="instructions">
               Instructions : Take it in turns to join the black dots, if you close a square you get 1 point and another turn, so think hard and don't give any squares away. The player with the most squares at the end of the game wins.
@@ -72,12 +70,12 @@
           <div class="megaBoard">
           </div> <!--End fo mega Board div made better with js-->
 
-          <p>
-          <div class="forResetButton">
-            <button class="gameButton" id="resetButton">Replay Game</button>
+
+          <div class="forGameButtons">
+            <button class="gameButton" id="resetButton">Replay Game</button><br>
             <button class="gameButton" id="startAgain">Start again</button>
           </div>
-          </p>
+
 
 
 

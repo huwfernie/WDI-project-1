@@ -12,6 +12,8 @@ body {
   overflow: hidden;
 }
 
+
+
 .sideBar, .topBar, .board, .centerpiece, .node {
   padding: 0;
   margin: 0;
@@ -33,14 +35,14 @@ body {
 }
 
 .centerpiece {
-  font-size: 70px;
+  font-size: 35px;
   text-align: center;
   vertical-align:top;
-  padding-top: 10px;
+  padding-top: 5px;
   visibility: hidden;
   background: white;
-  height: 135px;
-  width: 135px;
+  height: 60px;
+  width: 60px;
 }
 
 
@@ -58,8 +60,7 @@ body {
 .topBar {
   background: red;
   height: 10px;
-  width: 180px;
-  width: 135px;
+  width: 60px;
   vertical-align:top;
 
 }
@@ -67,7 +68,7 @@ body {
 .sideBar {
   background: salmon;
   height: 180px;
-  height: 135px;
+  height: 60px;
   width: 10px;
   vertical-align:top;
 }
@@ -187,6 +188,10 @@ body {
   border-radius: 20px;
   cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
   transform: rotate(-30deg);
+  margin-left: 430px;
+  position: relative;
+  top: -180px;
+  left: 00px;
 }
 
 .title {
@@ -254,7 +259,9 @@ body {
 
 .welcome {
   width: 90%;
+  text-align: center;
   /*background: yellow;*/
+  margin: 0 auto;
 }
 
 .game {
@@ -262,7 +269,7 @@ body {
  background-image: url(../images/background.jpg);
  background-size: cover;
  height: 100vh;
-
+ position: relative;
 }
 
 .gameButton {
@@ -274,6 +281,9 @@ body {
   font-family: 'Permanent Marker', cursive;
   font-size: 20px;
   cursor: pointer;
+  position: relative;
+  top: -300px;
+  left: -40px;
 }
 
 .forGameButtons {

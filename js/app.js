@@ -5,74 +5,12 @@ console.log('Hello Huw');
 
 $(() => {
 
-//this is some funky stuff, don't expect it to be here forever!! ----------
-
-  const x = 2;  // x and y are the number of boxes to make
-  const y = 2;  // on the board
+  const x = 6;  // x and y are the number of boxes to make
+  const y = 6;  // on the board
 
   let xElements = null;  // these are the elements needed to make
   let yElements = null;  // the boxes
-
-  createNodes(x,y);   // takes x and y and sets xElements and yElements
-
-  console.log(xElements);  //test
-  console.log(yElements);  // test
-
-  let idCount = 1;  // counter for giving each element a unique id
-
-  // the start of the bit that makes the mega-board board!
-
-  //board width = 10 + 135 + 10 px + 145 for each new square
-
-  const boardWidth = 155 + ((x-1)*145);
-  const boardHeight = 155 + ((y-1)*145);
-
-  $('.megaBoard').css('width', `${boardWidth}px`);
-  $('.megaBoard').css('height', `${boardHeight}px`);
-
-
-  const evenRow = ['node','topBar'];
-  const oddRow = ['sideBar','centerpiece'];
-
-  //create the board before here! ------------------------------------------
-
-  for (let i=0; i<yElements; i++) {
-    // console.log(`y nodes(i): ${i}`);
-    let thisDiv = null;
-    let aIndex = null;
-    for (let j=0; j<xElements; j++) {
-      // console.log(`x nodes(j): ${j}`);
-      // Create the div's here
-      if (i%2 === 0) { // even rows - 0,2,4,6...
-        if (j%2 === 0) {
-          aIndex = 0;
-        } else {
-          aIndex = 1;
-        }
-        thisDiv =  evenRow[aIndex];
-      } else { // odd rows - 1,3,5,7...
-        // console.log(`j is now ${j}`);
-        if (j%2 === 0) {
-          aIndex = 0;
-        } else {
-          aIndex = 1;
-        }
-        thisDiv =  oddRow[aIndex];
-      }
-
-
-      // finally create the div with class of thisDiv and id of idCount
-      console.log(`buliding you a ${thisDiv} with id ${idCount}`);
-      $('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
-      // console.log(`id count ${idCount}`);
-      idCount++;
-    }
-  }
-
-  // add the "active" class to sidebars and topBars so the onClick's are added
-  $('.sideBar').addClass('active');
-  $('.topBar').addClass('active');
-
+  makeBoard();
 
 // run this on load!!
   const player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
@@ -225,10 +163,7 @@ $(() => {
   }
 
 
-  function createNodes(x,y) {
-    xElements = 1 + (2*x);
-    yElements = 1 + (2*y);
-  }
+
 
 
   function lowerTheClass(e) {
@@ -361,8 +296,76 @@ $(() => {
   } // end of whoWins
 
 
+
  // End of funcitons, this space is for the funnky stuff!! -----------------
 
+ //this is some funky stuff, don't expect it to be here forever!! ----------
+  function makeBoard() {
+
+
+   // takes x and y and sets xElements and yElements
+    xElements = 1 + (2*x);
+    yElements = 1 + (2*y);
+
+
+
+    console.log(xElements);  //test
+    console.log(yElements);  // test
+
+    let idCount = 1;  // counter for giving each element a unique id
+
+   // the start of the bit that makes the mega-board board!
+
+   //board width = 10 + 135 + 10 px + 145 for each new square
+
+    const boardWidth = 80 + ((x-1)*70);
+    const boardHeight = 80 + ((y-1)*70);
+
+    $('.megaBoard').css('width', `${boardWidth}px`);
+    $('.megaBoard').css('height', `${boardHeight}px`);
+
+
+    const evenRow = ['node','topBar'];
+    const oddRow = ['sideBar','centerpiece'];
+
+   //create the board before here! ------------------------------------------
+
+    for (let i=0; i<yElements; i++) {
+    // console.log(`y nodes(i): ${i}`);
+      let thisDiv = null;
+      let aIndex = null;
+      for (let j=0; j<xElements; j++) {
+        // console.log(`x nodes(j): ${j}`);
+        // Create the div's here
+        if (i%2 === 0) { // even rows - 0,2,4,6...
+          if (j%2 === 0) {
+            aIndex = 0;
+          } else {
+            aIndex = 1;
+          }
+          thisDiv =  evenRow[aIndex];
+        } else { // odd rows - 1,3,5,7...
+          // console.log(`j is now ${j}`);
+          if (j%2 === 0) {
+            aIndex = 0;
+          } else {
+            aIndex = 1;
+          }
+          thisDiv =  oddRow[aIndex];
+        }
+
+
+        // finally create the div with class of thisDiv and id of idCount
+        console.log(`buliding you a ${thisDiv} with id ${idCount}`);
+        $('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
+      // console.log(`id count ${idCount}`);
+        idCount++;
+      }
+      // add the "active" class to sidebars and topBars so the onClick's are added
+      $('.sideBar').addClass('active');
+      $('.topBar').addClass('active');
+    }
+  } // end of make board
 
 
 

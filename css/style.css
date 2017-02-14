@@ -177,14 +177,14 @@ body {
 }
 
 .megaBoard {
-  background: #fafad3;
+  background: #f9f6f9;
   width: 590px;
   height: 590px;
   border: 0px solid black;
   box-sizing: content-box;-box;
   overflow: auto;
   margin: 0 auto;
-  border: 20px solid white;
+  border: 20px solid #f9f6f9;
   border-radius: 20px;
   cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
   transform: rotate(-30deg);

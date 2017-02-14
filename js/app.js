@@ -1,49 +1,42 @@
 console.log('Hello Huw');
-
-
-
-
 $(() => {
 
-  const x = 6;  // x and y are the number of boxes to make
-  const y = 6;  // on the board
 
-  let xElements = null;  // these are the elements needed to make
-  let yElements = null;  // the boxes
+  var dots = dots || {};
+
+  dots.x = 6;  // x and y are the number of boxes to make
+  dots.y = 6;  // on the board
+
+  dots.xElements = null;  // these are the elements needed to make
+  dots.yElements = null;  // the boxes
   makeBoard();
 
 // run this on load!!
-  const player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
-  const player2 = {name: 'Player 2', score: 0, color: '#c51414'};
-  //const squares = {};
-  //const players = ['Aplayer 1','Bplayer 2'];
-  let playerNow = 1;
-  let playerNowName = null;
-  let playerNowColor = null;
-  let playCount = null;
-  //const playerScores = [0,0];
-  const $active = $('.active');
-  const $reset = $('#resetButton');
-  const $topBar = $('.topBar');
-  const $sideBar = $('.sideBar');
-  //const $update = $('.update');
-  const $middle = $('#middle');
-  const $middleEdit = $('#middleEdit');
-  const $right = $('#right');
-  const $left = $('#left');
-  let freeGo = 0;
-  const $startAgain = $('#startAgain');
+  dots.player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
+  dots.player2 = {name: 'Player 2', score: 0, color: '#c51414'};
+  dots.playerNow = 1;
+  dots.playerNowName = null;
+  dots.playerNowColor = null;
+  dots.playCount = null;
+  dots.$active = $('.active');
+  dots.$reset = $('#resetButton');
+  dots.$topBar = $('.topBar');
+  dots.$sideBar = $('.sideBar');
+  dots.$middle = $('#middle');
+  dots.$middleEdit = $('#middleEdit');
+  dots.$right = $('#right');
+  dots.$left = $('#left');
+  dots.freeGo = 0;
+  dots.$startAgain = $('#startAgain');
 
-  const $startGame = $('#startGame');
-  // change this when more than one tile.
-  // const $board = $('.board'); not used any more
-  const $centerpiece = $('.centerpiece');
+  dots.$startGame = $('#startGame');
+  dots.$centerpiece = $('.centerpiece');
 
-  $centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+  dots.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
 
   // create an anon. function for each click on the sideBar
   // and-or top-bar
-  $active.on('click', function(e) {
+  dots.$active.on('click', function(e) {
     //console.log(`clickeroo`);
     if (amIActive(e)) {                 // if bar is clickable : active
       changeBarClassesAfterClick(e);    // change class from active to clicked
@@ -59,31 +52,30 @@ $(() => {
 
 
   // add a listener to the reset button
-  $reset.on('click', function() {
-    //playThis(`sounds/pen.m4a`); //play sound
+  dots.$reset.on('click', function() {
     reset();
   });
 
-  $startGame.on('click', function() {
+  dots.$startGame.on('click', function() {
     console.log('click start');
     let temp = $('#player1').val();
     console.log(temp);
     if (temp) {
-      player1.name = temp;
+      dots.player1.name = temp;
     }
     temp = $('#player2').val();
     if (temp) {
-      player2.name = temp;
+      dots.player2.name = temp;
     }
-    console.log(player1);
+    console.log(dots.player1);
     updatePlayerScores();
-    $middle.html(`New Game - You're up `);
-    $middleEdit.html(player1.name);
+    dots.$middle.html(`New Game - You're up `);
+    dots.$middleEdit.html(dots.player1.name);
     $('.welcome').slideUp(700);
     $('.game').css('display', 'block');
   });
 
-  $startAgain.on('click', function() {
+  dots.$startAgain.on('click', function() {
     location.reload();
   });
 
@@ -133,16 +125,16 @@ $(() => {
 
   function reset() {
     console.log(`reset button`);
-    $topBar.removeClass('clicked');
-    $topBar.addClass('active');
-    $sideBar.removeClass('clicked');
-    $sideBar.addClass('active');
-    $centerpiece.html(`4`);
-    $centerpiece.css('visibility', 'hidden');
-    player1.score = 0;
-    player2.score = 0;
+    dots.$topBar.removeClass('clicked');
+    dots.$topBar.addClass('active');
+    dots.$sideBar.removeClass('clicked');
+    dots.$sideBar.addClass('active');
+    dots.$centerpiece.html(`4`);
+    dots.$centerpiece.css('visibility', 'hidden');
+    dots.player1.score = 0;
+    dots.player2.score = 0;
     updatePlayerScores();
-    playerNow = 1;
+    dots.playerNow = 1;
   }// end of reset function
 
   function changeBarClassesAfterClick(e) {
@@ -168,13 +160,13 @@ $(() => {
 
   function lowerTheClass(e) {
     if ( $(e.target).hasClass('topBar')  ) {
-      // change html of elements with id +- xElements
+      // change html of elements with id +- dots.xElements
       console.log(`what is my topBar ID?`);
       const temp = $(e.target).attr('id');
       console.log(`how about .. ${temp}`);
 
       console.log(`above`);
-      const aboveMe = parseInt(temp) - xElements;
+      const aboveMe = parseInt(temp) - dots.xElements;
       const $aboveMe = $(`#${aboveMe}`);
       let upScore = $aboveMe.html();
       upScore--;
@@ -184,7 +176,7 @@ $(() => {
       }
 
       console.log(`below`);
-      const belowMe = parseInt(temp) + xElements;
+      const belowMe = parseInt(temp) + dots.xElements;
       const $belowMe = $(`#${belowMe}`);
       let downScore = $belowMe.html();
       downScore--;
@@ -222,34 +214,34 @@ $(() => {
   // playerIndex = 0; // Why is this here!!!!???????
 
   function changePlayer() {
-    playCount = playCount + 1 - freeGo;
+    dots.playCount = dots.playCount + 1 - dots.freeGo;
     //playerIndex = playCount%2;
     //console.log(`player index is ${playerIndex}`);
-    if (playCount%2 === 1) {
-      playerNowName = player2.name;
-      playerNowColor = player2.color;
-      playerNow = 2;
+    if (dots.playCount%2 === 1) {
+      dots.playerNowName = dots.player2.name;
+      dots.playerNowColor = dots.player2.color;
+      dots.playerNow = 2;
       //alert(playerNowName);
     } else {
-      playerNowName = player1.name;
-      playerNowColor = player1.color;
-      playerNow = 1;
+      dots.playerNowName = dots.player1.name;
+      dots.playerNowColor = dots.player1.color;
+      dots.playerNow = 1;
       //alert(playerNowName);
     }
 
-    if (freeGo === 1) {
-      $middle.html(`Play again `);
+    if (dots.freeGo === 1) {
+      dots.$middle.html(`Play again `);
     } else {
-      $middle.html(`Lets Go `);
-      $middleEdit.html(`${playerNowName}`);
+      dots.$middle.html(`Lets Go `);
+      dots.$middleEdit.html(`${dots.playerNowName}`);
     }
-    freeGo = 0;
+    dots.freeGo = 0;
   }
 
   function changeCursor() {
-    if (playerNow === 2){
+    if (dots.playerNow === 2){
       console.log('changeCursor');
-      $('.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
+      $('.dots.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
     } else {
       $('.megaBoard').css('cursor', 'url(images/pencilMedium.png) 10 113,url(images/pencilSmall.png) 4 30,auto');
     }
@@ -257,41 +249,41 @@ $(() => {
 
   function claimSquare(thisOne) {
     // playerScores[playerNow]
-    freeGo = 1;
-    const initial = ((playerNowName).split(''))[0];
+    dots.freeGo = 1;
+    const initial = ((dots.playerNowName).split(''))[0];
     thisOne.html(initial);
     thisOne.css('visibility', 'visible');
-    thisOne.css('color', playerNowColor);
-    if (playerNow === 2) {
-      player2.score += 1;
+    thisOne.css('color', dots.playerNowColor);
+    if (dots.playerNow === 2) {
+      dots.player2.score += 1;
     } else {
-      player1.score += 1;
+      dots.player1.score += 1;
     }
     updatePlayerScores();
 
   }
 
   function updatePlayerScores() {
-    $left.html(`${player1.name} score : ${player1.score}`);
-    $right.html(`${player2.name} score : ${player2.score}`);
+    dots.$left.html(`${dots.player1.name} score : ${dots.player1.score}`);
+    dots.$right.html(`${dots.player2.name} score : ${dots.player2.score}`);
   }
 
   function whoWins(){
-    if (player1.score + player2.score === ( x*y ) ){  // all squares guessed
+    if (dots.player1.score + dots.player2.score === ( dots.x*dots.y ) ){  // all squares guessed
       console.log(`we have a winner`);
-      $middleEdit.html('');
-      if (player1.score === player2.score) {
-        $middle.html('We have a draw!!!');
+      dots.$middleEdit.html('');
+      if (dots.player1.score === dots.player2.score) {
+        dots.$middle.html('We have a draw!!!');
         playThis(`sounds/trumpet.mp3`);
-      } else if (player1.score > player2.score) {
-        $middle.html(`${player1.name} wins`);
+      } else if (dots.player1.score > dots.player2.score) {
+        dots.$middle.html(`${dots.player1.name} wins`);
         playThis(`sounds/tada.mp3`);
       } else { // player[1] > player[0]
-        $middle.html(`${player2.name} wins`);
-        playThis(`sounds/pen.mp3`);
+        dots.$middle.html(`${dots.player2.name} wins`);
+        playThis(`sounds/tada.mp3`);
       }
-      $left.html(player1.score);
-      $right.html(player2.score);
+      dots.$left.html(dots.player1.score);
+      dots.$right.html(dots.player2.score);
     }
   } // end of whoWins
 
@@ -303,14 +295,14 @@ $(() => {
   function makeBoard() {
 
 
-   // takes x and y and sets xElements and yElements
-    xElements = 1 + (2*x);
-    yElements = 1 + (2*y);
+   // takes x and y and sets dots.xElements and dots.yElements
+    dots.xElements = 1 + (2*dots.x);
+    dots.yElements = 1 + (2*dots.y);
 
 
 
-    console.log(xElements);  //test
-    console.log(yElements);  // test
+    console.log(dots.xElements);  //test
+    console.log(dots.yElements);  // test
 
     let idCount = 1;  // counter for giving each element a unique id
 
@@ -318,8 +310,8 @@ $(() => {
 
    //board width = 10 + 135 + 10 px + 145 for each new square
 
-    const boardWidth = 80 + ((x-1)*70);
-    const boardHeight = 80 + ((y-1)*70);
+    const boardWidth = 80 + ((dots.x-1)*70);
+    const boardHeight = 80 + ((dots.y-1)*70);
 
     $('.megaBoard').css('width', `${boardWidth}px`);
     $('.megaBoard').css('height', `${boardHeight}px`);
@@ -330,11 +322,11 @@ $(() => {
 
    //create the board before here! ------------------------------------------
 
-    for (let i=0; i<yElements; i++) {
+    for (let i=0; i<dots.yElements; i++) {
     // console.log(`y nodes(i): ${i}`);
       let thisDiv = null;
       let aIndex = null;
-      for (let j=0; j<xElements; j++) {
+      for (let j=0; j<dots.xElements; j++) {
         // console.log(`x nodes(j): ${j}`);
         // Create the div's here
         if (i%2 === 0) { // even rows - 0,2,4,6...

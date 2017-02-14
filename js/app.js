@@ -7,8 +7,8 @@ $(() => {
 
 //this is some funky stuff, don't expect it to be here forever!! ----------
 
-  const x = 5;  // x and y are the number of boxes to make
-  const y = 5;  // on the board
+  const x = 2;  // x and y are the number of boxes to make
+  const y = 2;  // on the board
 
   let xElements = null;  // these are the elements needed to make
   let yElements = null;  // the boxes
@@ -75,12 +75,13 @@ $(() => {
 
 
 // run this on load!!
-  const player1 = {name: 'Roser', score: 0, color: '#abc'};
-  const player2 = {name: 'Huw', score: 0, color: '#abc'};
+  const player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
+  const player2 = {name: 'Player 2', score: 0, color: '#c51414'};
   //const squares = {};
   //const players = ['Aplayer 1','Bplayer 2'];
   let playerNow = 1;
   let playerNowName = null;
+  let playerNowColor = null;
   let playCount = null;
   //const playerScores = [0,0];
   const $active = $('.active');
@@ -93,14 +94,14 @@ $(() => {
   const $right = $('#right');
   const $left = $('#left');
   let freeGo = 0;
+  const $startAgain = $('#startAgain');
+
+  const $startGame = $('#startGame');
   // change this when more than one tile.
   // const $board = $('.board'); not used any more
   const $centerpiece = $('.centerpiece');
 
   $centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
-  $middle.html(`Lets Go `);
-  $middleEdit.html(player1.name);
-  updatePlayerScores();
 
   // create an anon. function for each click on the sideBar
   // and-or top-bar
@@ -125,7 +126,28 @@ $(() => {
     reset();
   });
 
+  $startGame.on('click', function() {
+    console.log('click start');
+    let temp = $('#player1').val();
+    console.log(temp);
+    if (temp) {
+      player1.name = temp;
+    }
+    temp = $('#player2').val();
+    if (temp) {
+      player2.name = temp;
+    }
+    console.log(player1);
+    updatePlayerScores();
+    $middle.html(`New Game - You're up `);
+    $middleEdit.html(player1.name);
+    $('.welcome').slideUp(700);
+    $('.game').css('display', 'block');
+  });
 
+  $startAgain.on('click', function() {
+    location.reload();
+  });
 
 
 
@@ -270,10 +292,12 @@ $(() => {
     //console.log(`player index is ${playerIndex}`);
     if (playCount%2 === 1) {
       playerNowName = player2.name;
+      playerNowColor = player2.color;
       playerNow = 2;
       //alert(playerNowName);
     } else {
       playerNowName = player1.name;
+      playerNowColor = player1.color;
       playerNow = 1;
       //alert(playerNowName);
     }
@@ -302,6 +326,7 @@ $(() => {
     const initial = ((playerNowName).split(''))[0];
     thisOne.html(initial);
     thisOne.css('visibility', 'visible');
+    thisOne.css('color', playerNowColor);
     if (playerNow === 2) {
       player2.score += 1;
     } else {
@@ -322,6 +347,7 @@ $(() => {
       $middleEdit.html('');
       if (player1.score === player2.score) {
         $middle.html('We have a draw!!!');
+        playThis(`sounds/trumpet.mp3`);
       } else if (player1.score > player2.score) {
         $middle.html(`${player1.name} wins`);
         playThis(`sounds/tada.mp3`);
@@ -333,12 +359,16 @@ $(() => {
       $right.html(player2.score);
     }
   } // end of whoWins
+
+
  // End of funcitons, this space is for the funnky stuff!! -----------------
 
 
 
 
 
+  $('.welcome').css('height', $(document).height());
+  //$('.game').css("height", $(document).height());
 
 
 

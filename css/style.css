@@ -6,22 +6,30 @@
 
 body {
   background-color: #ae9898;
+  background-color: yellow;
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
   margin: 0 auto;
   /*overflow: hidden;*/
 }
 
+.welcome {
+  width: 90%;
+  text-align: center;
+  background: lightyellow;
+  margin: 0 auto;
+  height: 900px;
+  width: 1400px;
+}
 
-
-.sideBar, .topBar, .board, .centerpiece, .node {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  font-size: 0px;
-  box-sizing: border-box;
-  border-radius: 5px;
-  /*display: inline-block;*/
+.game {
+ /*display: none;*/
+ background-image: url(../images/background.jpg);
+ background-size: cover;
+ height: 800px;
+ width: 1400px;
+ position: relative;
+ margin: 0 auto;
 }
 
 .sideBar, .topBar, .centerpiece, .node {
@@ -37,48 +45,34 @@ body {
 .centerpiece {
   font-size: 35px;
   text-align: center;
-  vertical-align:top;
+  /*vertical-align:top;*/
   padding-top: 5px;
   visibility: hidden;
-  background: white;
+  background: inherit;
   height: 60px;
   width: 60px;
 }
-
-
-
-
-
 
 .node {
   background: black;
   height: 10px;
   width: 10px;
-  vertical-align:top;
 }
 
 .topBar {
   background: red;
   height: 10px;
   width: 60px;
-  vertical-align:top;
-
 }
 
 .sideBar {
   background: salmon;
-  height: 180px;
   height: 60px;
   width: 10px;
-  vertical-align:top;
 }
 
-
-.forResetButton {
-  text-align: center;
-}
-
-/* End of start-up styling */
+/* End of start-up styling on board*/
+/* now for active styles on squares*/
 
 .active {
   background: #d0dbd0;
@@ -96,34 +90,55 @@ body {
   vertical-align:top;
 }
 
+/* End of active styling on board*/
+
+.playerNamesHolder {
+  width: 1200px;
+  margin: 0 auto;
+  /*background: black;*/
+
+}
+
+.playerNamesSection {
+  /*background: blue;*/
+  width: 400px;
+  float: left;
+  text-align: center;
+}
+
+.playerNamesMiddle {
+  /*background: orange;*/
+  width: 300px;
+  margin: 0 50px;
+  float: left;
+  text-align: center;
+}
+
+.instructions {
+  text-align: center;
+  margin: 50px auto;
+  width: 85%;
+  /*background: lightblue;*/
+}
+
+#instructions {
+  text-decoration: underline;
+  font-size: 30px;
+}
+
 
 /* Dynamic board CSS starts here */
 
-.dynamicBoard {
-  background: purple;
-  width: 390px;
-  height: 390px;
-  border: 0px solid black;
-  box-sizing: content-box;-box;
-  overflow: auto;
-  margin: 0 auto;
-}
 
-.superBoard {
-  background: white;
-  width: 390px;
-  height: 390px;
-  border: 0px solid black;
-  box-sizing: content-box;-box;
-  overflow: auto;
-  margin: 0 auto;
-  border: 20px solid white;
-  border-radius: 20px;
-}
 
-.updateDiv {
+header {
   text-align: center;
   padding: 40px 0;
+}
+
+.title {
+  color: #1927df;
+  font-size: 80px;
 }
 
 .update {
@@ -178,6 +193,7 @@ body {
 
 .megaBoard {
   background: #f9f6f9;
+  /*background: purple;*/
   width: 590px;
   height: 590px;
   border: 0px solid black;
@@ -194,45 +210,15 @@ body {
   left: 00px;
 }
 
-.title {
-  width: 30%;
-  color: #1927df;
-  font-size: 80px;
-}
 
-.instructions {
-  text-align: center;
-  margin-top: 170px;
-}
 
-#instructions {
-  text-decoration: underline;
-  font-size: 30px;
-}
-.playerNamesHolder{
-  width: 1200px;
-  margin: 0 auto;
-  /*background: black;*/
-}
 
-.playerNamesLeft {
-  /*background: blue;*/
-  width: 400px;
-  float: left;
-  text-align: center;
-}
-.playerNamesMiddle {
-  /*background: orange;*/
-  width: 400px;
-  float: left;
-  text-align: center;
-}
-.playerNamesRight {
-  /*background: red;*/
-  width: 400px;
-  float: left;
-  text-align: center;
-}
+
+
+
+
+
+
 .inputNames {
   width: 200px;
   height: 40px;
@@ -255,25 +241,6 @@ body {
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
   cursor: pointer;
-}
-
-.welcome {
-  width: 90%;
-  text-align: center;
-  /*background: yellow;*/
-  margin: 0 auto;
-  height: 900px;
-  width: 1400px;
-}
-
-.game {
- /*display: none;*/
- background-image: url(../images/background.jpg);
- background-size: cover;
- height: 700px;
- width: 1400px;
- position: relative;
- margin: 0 auto;
 }
 
 .gameButton {

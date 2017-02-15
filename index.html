@@ -12,18 +12,13 @@
       <main>
         <div class="welcome">
           <header>
-            <div class="updateDiv"> <!--update div holds player info and scores-->
-              <span class="title"></span>
               <span class="title">Lets play dots</span>
-              <span class="title"></span>
-            </div>
           </header>
 
           <form>
-            <div class="playerNamesHolder">
-
-                <div class="playerNamesLeft">
-                  <span>Player 1 Name:</span><p>
+            <div class="playerNamesHolder clearfix">
+                <div class="playerNamesSection">
+                  <label for="player1">Player 1 Name:</label><p>
                   <input type="text" class="inputNames" placeholder="Player 1" id="player1"></p>
                 </div>
 
@@ -31,8 +26,8 @@
                     <div id="startGame">Start Game</div>
                   </div>
 
-                <div class="playerNamesLeft">
-                  <span>Player 2 Name:</span>
+                <div class="playerNamesSection">
+                  <label for="player2">Player 2 Name:</label>
                   <p><input type="text" class="inputNames" placeholder="Player 2" id="player2"></p>
                 </div>
             </div>  <!-- End of playerNamesHolder -->
@@ -41,11 +36,13 @@
 
           <div class="instructions">
             <p>
-            <span id="instructions">Instructions</span><br>Take it in turns to join the black dots, if you close a square you get 1 point and another turn, so think hard and don't give any squares away.</p>
+            <span id="instructions">Instructions</span></p>
+            <p>
+            Take it in turns to join the black dots, if you close a square you get 1 point and another turn, so think hard and don't give any squares away.</p>
 
             <p>The player with the most squares at the end of the game wins.</p>
-          </div>
-        </div>  <!-- End of Welcome -->
+          </div>  <!-- End of instructions -->
+        </div>  <!-- End of Welcome screen -->
 
         <div class="game" id="game">
 

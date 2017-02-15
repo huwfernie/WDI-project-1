@@ -31,7 +31,7 @@ dots.setup = function() {
   this.$left = $('#left');
   this.freeGo = 0;
   this.$startAgain = $('#startAgain');
-  this.$startGame = $('#startGame');
+  this.$startGame = $('#startGameWelcome');
   this.$centerpiece = $('.centerpiece');
   this.$welcome = $('.welcome');
   this.$game = $('.game');
@@ -76,6 +76,7 @@ dots.setup = function() {
     this.player1.name = 'Player 2';
     $('#player1').val('');
     $('#player2').val('');
+    this.reset();
   }).bind(this);
 
 

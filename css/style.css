@@ -6,10 +6,11 @@
 
 body {
   background-color: #ae9898;
-  background-color: yellow;
+  background-color: white;
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
   margin: 0 auto;
+  background-image: url(../images/tabletop.jpg);
   /*overflow: hidden;*/
 }
 
@@ -20,16 +21,18 @@ body {
   margin: 0 auto;
   height: 900px;
   width: 1400px;
+  background-image: url(../images/tabletop.jpg);
 }
 
 .game {
- /*display: none;*/
- background-image: url(../images/background.jpg);
+ display: none;
  background-size: cover;
  height: 800px;
  width: 1400px;
  position: relative;
  margin: 0 auto;
+ background: lightgreen;
+ background-image: url(../images/tabletop.jpg);
 }
 
 .sideBar, .topBar, .centerpiece, .node {
@@ -128,142 +131,119 @@ body {
 
 
 /* Dynamic board CSS starts here */
-
-
+/* Welcome sceen starts here */
 
 header {
   text-align: center;
   padding: 40px 0;
-}
-
-.title {
   color: #1927df;
   font-size: 80px;
 }
 
-.update {
-  width: 25%
-  text-align: center;
-  /*padding: 0 50px;*/
-  text-align: center;
-  float: right;
-  margin: 30px;
-
-}
-
-#left {
-  color: #e7e729;
-  /*background: red;*/
-  /*width: 40%;
-  float: left;*/
-  text-align: center;
-  margin-right: 70px;
-  text-shadow: 2px 2px black;
-
-}
-
-.update#middle {
-  color: #1927df;
-  font-size: 34px;
-  padding-right: 0;
-  /*background: purple;*/
-  float: right;
-  margin-right: 10px;
-}
-
-.update#middleEdit {
-  color: #1927df;
-  font-size: 34px;
-  padding-left: 0;
-  text-align: left;
-  /*background: orange;*/
-  float: right;
-  width: 150px;
-}
-
-#right {
-  color: #c51414;
-  /*background: blue;*/
-  /*width: 40%;
-  float: right;*/
-  text-align: center;
-    margin-right: 70px;
-    text-shadow: 2px 2px black;
-}
-
-.megaBoard {
-  background: #f9f6f9;
-  /*background: purple;*/
-  width: 590px;
-  height: 590px;
-  border: 0px solid black;
-  box-sizing: content-box;-box;
-  overflow: auto;
-  margin: 0 auto;
-  border: 20px solid #f9f6f9;
-  border-radius: 20px;
-  cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
-  transform: rotate(-30deg);
-  margin-left: 430px;
-  position: relative;
-  top: -180px;
-  left: 00px;
-}
-
-
-
-
-
-
-
-
-
-
 .inputNames {
   width: 200px;
   height: 40px;
-  font-family: 'Permanent Marker', cursive;
+  font-family: inherit;
   background-color: white;
   border: 0;
   margin: 0;
   padding: 10px;
   border-radius: 10px;
-  font-size: 25px;
+  font-size: inherit;
   text-align: center;
 }
 
-#startGame {
+
+#startGameWelcome {   /*start button on welcome screen*/
   background: red;
   margin-top: 25px;
   padding: 10px;
   border: 2px solid white;
   border-radius: 10px;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 25px;
   cursor: pointer;
+}
+
+
+/*The game screen CSS is below*/
+
+.gameTitle {
+  text-align: center;
+  padding: 0;
+  color: #1927df;
+  font-size: 60px;
+  position: relative;
+  top: 75px;
+}
+
+aside {
+  width: 400px;
+  border: 0px solid black;
+  float: right;
+  text-align: left;
+  position: relative;
+  top: 150px;
+}
+
+#left, #right {
+  color: #e7e729;
+  background: inherit;
+  margin-top: 25px;
+  text-shadow: 2px 2px black;
+}
+#right {
+  color: #c51414;
+}
+
+.megaBoard {
+  background: #d4cfcd;
+  /*background: purple;*/
+  width: 590px;
+  height: 590px;
+  border: 0px solid black;
+  box-sizing: content-box;
+
+  margin: 0 auto;
+  border: 0px solid #f9f6f9;
+  border-radius: 20px;
+
+  position: relative;
+  top: 150px;
+  left: 20px;
+
+
+  /*cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;*/
+  /*transform: rotate(-30deg);*/
+  /*margin-left: 430px;
+
+  left: 00px;*/
+}
+
+.notebook {
+  width: 800px;
+  height: 700px;
+  background-image: url(../images/blankNote.png);
+  background-size: cover;
+  position: relative;
+  top: 60px;
+  left: 260px;
 }
 
 .gameButton {
   background: red;
-  margin: 25px;
-  padding: 5px 10px;
+  margin-top: 25px;
+  padding: 5px 0;
   border: 2px solid white;
   border-radius: 10px;
-  font-family: 'Permanent Marker', cursive;
+  font-family: inherit;
   font-size: 20px;
   cursor: pointer;
-  position: relative;
-  top: -300px;
-  left: -40px;
 }
 
 .forGameButtons {
-  float: right;
+  text-align: left;
 }
 
-.scoreboard {
-  float: right;
-}
+
 
 .clearfix:after {
   content: "";

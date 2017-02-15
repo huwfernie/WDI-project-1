@@ -23,7 +23,7 @@
                 </div>
 
                   <div class="playerNamesMiddle">
-                    <div id="startGame">Start Game</div>
+                    <div id="startGameWelcome">Start Game</div>
                   </div>
 
                 <div class="playerNamesSection">
@@ -44,33 +44,35 @@
           </div>  <!-- End of instructions -->
         </div>  <!-- End of Welcome screen -->
 
-        <div class="game" id="game">
 
 
-          <header class="clearfix">
-            <div class="clearfix updateDiv"> <!--update div holds player info and scores-->
-              <span class="update" id="middleEdit">2</span>
-              <span class="update" id="middle">2</span>
-            </div>
+
+        <div class="game" id="game"> <!-- For the game page -->
+
+          <div class="gameTitle">
+            <span class="update" id="middle">2</span>
+            <span class="update" id="middleEdit">2</span>
+          </div>
+          <aside>
             <div class="scoreboard">
               <div class="update" id="left">1</div>
-              <br>
               <div class="update" id="right">3</div>
             </div>
-            <!-- <div class="instructions">
-              Instructions : Take it in turns to join the black dots, if you close a square you get 1 point and another turn, so think hard and don't give any squares away. The player with the most squares at the end of the game wins.
-            </div> -->
-          </header>
+            <div class="forGameButtons">
+              <button class="gameButton" id="resetButton">Replay Game</button><br>
+              <button class="gameButton" id="startAgain">Start again</button>
+            </div>
+          </aside>
 
-          <div class="megaBoard">
-          </div> <!--End of mega Board div made better with js-->
 
-          <div class="forGameButtons">
-            <button class="gameButton" id="resetButton">Replay Game</button><br>
-            <button class="gameButton" id="startAgain">Start again</button>
-          </div>
 
+          <div class="notebook">
+            <div class="megaBoard">
+            </div> <!--End of mega Board div made better with js-->
+            </div>
         </div> <!-- end of game div -->
+
+
       </main>
       <footer></footer>
     </body>

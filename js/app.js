@@ -73,7 +73,7 @@ dots.setup = function() {
     this.$welcome.slideDown(700);
     this.$game.slideUp(700);
     this.player1.name = 'Player 1';
-    this.player1.name = 'Player 2';
+    this.player2.name = 'Player 2';
     $('#player1').val('');
     $('#player2').val('');
     this.reset();
@@ -131,6 +131,7 @@ dots.reset = function reset() {
   this.player2.score = 0;
   this.updatePlayerScores();
   this.playerNow = 1;
+  this.$middleEdit.html(this.player1.name);
 };// end of reset function
 
 dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
@@ -156,56 +157,86 @@ dots.playThis = function playThis(audio) {
 
 dots.lowerTheClass = function lowerTheClass(e) {
   if ( $(e.target).hasClass('topBar')  ) {
-    // change html of elements with id +- dots.xElements
-    console.log(`what is my topBar ID?`);
-    const temp = $(e.target).attr('id');
-    console.log(`how about .. ${temp}`);
-
-    console.log(`above`);
-    const aboveMe = parseInt(temp) - this.xElements;
-    const $aboveMe = $(`#${aboveMe}`);
-    let upScore = $aboveMe.html();
-    upScore--;
-    $aboveMe.html(upScore);
-    if (upScore === 0){
-      this.claimSquare($aboveMe);
-    }
-
-    console.log(`below`);
-    const belowMe = parseInt(temp) + this.xElements;
-    const $belowMe = $(`#${belowMe}`);
-    let downScore = $belowMe.html();
-    downScore--;
-    $belowMe.html(downScore);
-    if (downScore === 0){
-      this.claimSquare($belowMe);
-    }
+    const x = dots.xElements;
+    dots.callMe(e, x);
+    // // change html of elements with id +- dots.xElements
+    // console.log(`what is my topBar ID?`);
+    // const temp = $(e.target).attr('id');
+    //
+    // console.log(`above`);
+    // const aboveMe = parseInt(temp) - this.xElements;
+    // const $aboveMe = $(`#${aboveMe}`);
+    // let upScore = $aboveMe.html();
+    // upScore--;
+    // $aboveMe.html(upScore);
+    // if (upScore === 0){
+    //   this.claimSquare($aboveMe);
+    // }
+    //
+    // console.log(`below`);
+    // const belowMe = parseInt(temp) + this.xElements;
+    // const $belowMe = $(`#${belowMe}`);
+    // let downScore = $belowMe.html();
+    // downScore--;
+    // $belowMe.html(downScore);
+    // if (downScore === 0){
+    //   this.claimSquare($belowMe);
+    // }
   } else {
-    // change html of elements with id +- 1
-    console.log(`what is my sideBar ID?`);
-    const temp = $(e.target).attr('id');
-    console.log(`how about .. ${temp}`);
-    //
-    const leftOfMe = parseInt(temp) - 1;
-    const $leftOfMe = $(`#${leftOfMe}`);
-    let leftScore = $leftOfMe.html();
-    leftScore--;
-    $leftOfMe.html(leftScore);
-    if (leftScore === 0){
-      this.claimSquare($leftOfMe);
-    }
-    //
-    console.log(`rightOfMe`);
-    const rightOfMe = parseInt(temp) + 1;
-    const $rightOfMe = $(`#${rightOfMe}`);
-    let rightScore = $rightOfMe.html();
-    rightScore--;
-    $rightOfMe.html(rightScore);
-    if (rightScore === 0){
-      this.claimSquare($rightOfMe);
-    }
+    const x = 1;
+    dots.callMe(e, x);
+  //   // change html of elements with id +- 1
+  //   console.log(`what is my sideBar ID?`);
+  //   const temp = $(e.target).attr('id');
+  //   console.log(`how about .. ${temp}`);
+  //   //
+  //   const leftOfMe = parseInt(temp) - 1;
+  //   const $leftOfMe = $(`#${leftOfMe}`);
+  //   let leftScore = $leftOfMe.html();
+  //   leftScore--;
+  //   $leftOfMe.html(leftScore);
+  //   if (leftScore === 0){
+  //     this.claimSquare($leftOfMe);
+  //   }
+  //   //
+  //   console.log(`rightOfMe`);
+  //   const rightOfMe = parseInt(temp) + 1;
+  //   const $rightOfMe = $(`#${rightOfMe}`);
+  //   let rightScore = $rightOfMe.html();
+  //   rightScore--;
+  //   $rightOfMe.html(rightScore);
+  //   if (rightScore === 0){
+  //     this.claimSquare($rightOfMe);
+  //   }
   }
 };
+
+
+dots.callMe = function callMe(e, x) {
+  console.log(`been called`);
+  console.log(e);
+  console.log(x);
+  console.log(`what is my sideBar ID?`);
+  const temp = $(e.target).attr('id');
+  console.log(`how about .. ${temp}`);
+  const aboveMe = parseInt($(e.target).attr('id')) - x;
+  const belowMe = parseInt($(e.target).attr('id')) + x;
+  const $aboveMe = $(`#${aboveMe}`);
+  const $belowMe = $(`#${belowMe}`);
+  let upScore = $aboveMe.html();
+  let downScore = $belowMe.html();
+  upScore--;
+  downScore--;
+  $aboveMe.html(upScore);
+  $belowMe.html(downScore);
+  if (upScore === 0){
+    this.claimSquare($aboveMe);
+  }
+  if (downScore === 0){
+    this.claimSquare($belowMe);
+  }
+};
+
 
 // playerIndex = 0; // Why is this here!!!!???????
 

@@ -136,7 +136,7 @@ body {
 header {
   text-align: center;
   padding: 40px 0;
-  color: #1927df;
+  color: #7c1a1a;
   font-size: 80px;
 }
 
@@ -169,7 +169,7 @@ header {
 .gameTitle {
   text-align: center;
   padding: 0;
-  color: #1927df;
+  color: #7c1a1a;
   font-size: 60px;
   position: relative;
   top: 75px;
@@ -219,19 +219,19 @@ aside {
 }
 
 .notebook {
-  width: 800px;
+  width: 610px;
   height: 700px;
-  background-image: url(../images/blankNote.png);
+  background-image: url(../images/blankNote2.png);
   background-size: cover;
   position: relative;
-  top: 60px;
-  left: 260px;
+  top: 100px;
+  left: 330px;
 }
 
 .gameButton {
   background: red;
   margin-top: 25px;
-  padding: 5px 0;
+  padding: 5px;
   border: 2px solid white;
   border-radius: 10px;
   font-family: inherit;

@@ -2,43 +2,45 @@ var dots = dots || {};
 
 
 dots.setup = function() {
-
-  console.log(`huw`);
   console.log(`setup`);
   console.log(this);
 
-  dots.x = 6;  // x and y are the number of boxes to make
-  dots.y = 6;  // on the board
+  this.x = 6;  // x and y are the number of boxes to make
+  this.y = 6;  // on the board
 
-  dots.xElements = null;  // these are the elements needed to make
-  dots.yElements = null;  // the boxes
-  dots.makeBoard;
+  this.xElements = null;  // these are the elements needed to make
+  this.yElements = null;  // the boxes
+
+  console.log(`Make the board now`);
+  this.makeBoard();
 
   // run this on load!!
-  dots.player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
-  dots.player2 = {name: 'Player 2', score: 0, color: '#c51414'};
-  dots.playerNow = 1;
-  dots.playerNowName = null;
-  dots.playerNowColor = null;
-  dots.playCount = null;
-  dots.$active = $('.active');
-  dots.$reset = $('#resetButton');
-  dots.$topBar = $('.topBar');
-  dots.$sideBar = $('.sideBar');
-  dots.$middle = $('#middle');
-  dots.$middleEdit = $('#middleEdit');
-  dots.$right = $('#right');
-  dots.$left = $('#left');
-  dots.freeGo = 0;
-  dots.$startAgain = $('#startAgain');
-  dots.$startGame = $('#startGame');
-  dots.$centerpiece = $('.centerpiece');
+  this.player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
+  this.player2 = {name: 'Player 2', score: 0, color: '#c51414'};
+  this.playerNow = 1;
+  this.playerNowName = null;
+  this.playerNowColor = null;
+  this.playCount = null;
+  this.$active = $('.active');
+  this.$reset = $('#resetButton');
+  this.$topBar = $('.topBar');
+  this.$sideBar = $('.sideBar');
+  this.$middle = $('#middle');
+  this.$middleEdit = $('#middleEdit');
+  this.$right = $('#right');
+  this.$left = $('#left');
+  this.freeGo = 0;
+  this.$startAgain = $('#startAgain');
+  this.$startGame = $('#startGame');
+  this.$centerpiece = $('.centerpiece');
+  this.$welcome = $('.welcome');
+  this.$game = $('.game');
 
-  dots.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
 
   // create an anon. function for each click on the sideBar
   // and-or top-bar
-  dots.$active.on('click', function(e) {
+  this.$active.on('click', function(e) {
     console.log(`clickeroo`);
     if (dots.amIActive(e)) {                 // if bar is clickable : active
       dots.changeBarClassesAfterClick(e);    // change class from active to clicked
@@ -47,13 +49,13 @@ dots.setup = function() {
       dots.changeCursor();
       dots.whoWins();
     }// end of amIActive
-  });// end of $active.on(...
+  }).bind(this);// end of $active.on(...
 
 
   // add a listener to the reset button
-  dots.$reset.on('click', this.reset);
+  this.$reset.on('click', this.reset.bind(this));
 
-  dots.$startGame.on('click', () => {
+  this.$startGame.on('click', () => {
     console.log('click start');
     this.player1.name = $('#player1').val() || this.player1.name;
     this.player2.name = $('#player2').val() || this.player2.name;
@@ -63,14 +65,18 @@ dots.setup = function() {
     this.$middleEdit.html(this.player1.name);
     $('.welcome').slideUp(700);
     $('.game').css('display', 'block');
-  });
+  }).bind(this);
 
 
-  dots.$startAgain.on('click', function() {
-    $('.welcome').slideDown(700);
-    this.player1.name = '';
-    this.player1.name = '';
-  });
+  this.$startAgain.on('click', () => {
+    console.log(`start Again`);
+    this.$welcome.slideDown(700);
+    this.$game.slideUp(700);
+    this.player1.name = 'Player 1';
+    this.player1.name = 'Player 2';
+    $('#player1').val('');
+    $('#player2').val('');
+  }).bind(this);
 
 
 }; // End of setup
@@ -340,7 +346,4 @@ dots.makeBoard = function makeBoard() {
 //$('.game').css("height", $(document).height());
 
 
-//$(rps.setup.bind(rps));
-//$(dots.setup);
-//$(() => dots.setup());
 $(dots.setup.bind(dots));

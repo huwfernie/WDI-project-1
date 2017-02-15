@@ -9,7 +9,7 @@ body {
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
   margin: 0 auto;
-  overflow: hidden;
+  /*overflow: hidden;*/
 }
 
 
@@ -262,14 +262,18 @@ body {
   text-align: center;
   /*background: yellow;*/
   margin: 0 auto;
+  height: 900px;
+  width: 1400px;
 }
 
 .game {
  /*display: none;*/
  background-image: url(../images/background.jpg);
  background-size: cover;
- height: 100vh;
+ height: 700px;
+ width: 1400px;
  position: relative;
+ margin: 0 auto;
 }
 
 .gameButton {

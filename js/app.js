@@ -2,16 +2,16 @@ var dots = dots || {};
 
 
 dots.setup = function() {
-  console.log(`setup`);
+  console.log('setup');
   console.log(this);
 
-  this.x = 3;  // x and y are the number of boxes to make
-  this.y = 3;  // on the board
+  this.x = 4;  // x and y are the number of boxes to make
+  this.y = 4;  // on the board
 
   this.xElements = null;  // these are the elements needed to make
   this.yElements = null;  // the boxes
 
-  console.log(`Make the board now`);
+  console.log('Make the board now');
   this.makeBoard();
 
   // run this on load!!
@@ -38,10 +38,10 @@ dots.setup = function() {
 
   this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
 
-  // create an anon. function for each click on the sideBar
-  // and-or top-bar
+  // create an anon. function for each click on the sideBars
+  // and-or top-bars
   this.$active.on('click', function(e) {
-    console.log(`clickeroo`);
+    console.log('click');
     if (dots.amIActive(e)) {                 // if bar is clickable : active
       dots.changeBarClassesAfterClick(e);    // change class from active to clicked
       dots.lowerTheClass(e);                 // reads the html number and lowers it!
@@ -49,12 +49,11 @@ dots.setup = function() {
       dots.changeCursor();
       dots.whoWins();
     }// end of amIActive
-  }).bind(this);// end of $active.on(...
+  }).bind(this);// end of this.$active.on(...
 
 
-  // add a listener to the reset button
-  this.$reset.on('click', this.reset.bind(this));
 
+  // add a listener to the start Game button
   this.$startGame.on('click', () => {
     console.log('click start');
     this.player1.name = $('#player1').val() || this.player1.name;
@@ -65,12 +64,17 @@ dots.setup = function() {
     this.$middleEdit.html(this.player1.name);
     $('.welcome').slideUp(700);
     this.$game.slideDown(700);
-    // $('.game').css('display', 'block');
   }).bind(this);
 
 
+
+  // add a listener to the reset button
+  this.$reset.on('click', this.reset.bind(this));
+
+
+  //add a listener to the start again button
   this.$startAgain.on('click', () => {
-    console.log(`start Again`);
+    console.log('start Again');
     this.$welcome.slideDown(700);
     this.$game.slideUp(700);
     this.player1.name = 'Player 1';
@@ -169,25 +173,12 @@ dots.lowerTheClass = function lowerTheClass(e) {
 
 
 dots.callMe = function callMe(e, x) {
-  console.log(`been called`);
-  console.log(e);
-  console.log(x);
-  console.log(`what is my sideBar ID?`);
-  const temp = $(e.target).attr('id');
-  console.log(`how about .. ${temp}`);
-  // const aboveMe = parseInt($(e.target).attr('id')) - x;
+  console.log('callMe');
   const belowMe = parseInt($(e.target).attr('id')) + x;
-  // const $aboveMe = $(`#${aboveMe}`);
   const $belowMe = $(`#${belowMe}`);
-  // let upScore = $aboveMe.html();
   let downScore = $belowMe.html();
-  // upScore--;
   downScore--;
-  // $aboveMe.html(upScore);
   $belowMe.html(downScore);
-  // if (upScore === 0){
-  //   this.claimSquare($aboveMe);
-  // }
   if (downScore === 0){
     this.claimSquare($belowMe);
   }
@@ -214,9 +205,9 @@ dots.changePlayer = function changePlayer() {
 
   // freeGo is 1 after you close a square and get an extra turn
   if (this.freeGo === 1) {
-    this.$middle.html(`Play again `);
+    this.$middle.html('Play again ');
   } else {
-    this.$middle.html(`Lets Go `);
+    this.$middle.html('Lets Go ');
     this.$middleEdit.html(`${this.playerNowName}`);
   }
   this.freeGo = 0;
@@ -251,7 +242,7 @@ dots.updatePlayerScores = function updatePlayerScores() {
 
 dots.whoWins = function whoWins(){
   if (this.player1.score + this.player2.score === (this.x*this.y) ){  // all squares guessed
-    console.log(`we have a winner`);
+    console.log('we have a winner');
     this.$middleEdit.html('');
     if (this.player1.score === this.player2.score) {
       this.$middle.html('We have a draw!!!');
@@ -263,8 +254,6 @@ dots.whoWins = function whoWins(){
       this.$middle.html(`${this.player2.name} wins`);
       this.playThis(`sounds/tada.mp3`);
     }
-    this.$left.html(this.player1.score);
-    this.$right.html(this.player2.score);
   }
 }; // end of whoWins
 

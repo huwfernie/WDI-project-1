@@ -157,7 +157,7 @@ header {
 
 
 #startGameWelcome {   /*start button on welcome screen*/
-  background: red;
+  background: #ff3f3f;
   margin-top: 25px;
   padding: 10px;
   border: 2px solid white;
@@ -201,11 +201,12 @@ aside {
   /*background: purple;*/
   width: 590px;
   height: 590px;
-  border: 0px solid black;
+
   box-sizing: content-box;
 
   margin: 0 auto;
-  border: 0px solid #f9f6f9;
+  padding: 10px;
+  border: 1px solid black;
   border-radius: 20px;
 
   position: relative;
@@ -231,7 +232,7 @@ aside {
 }
 
 .gameButton {
-  background: red;
+  background: #ff3f3f;
   margin-top: 25px;
   padding: 5px;
   border: 2px solid white;
@@ -341,12 +342,8 @@ aside {
   }
 
   #startGameWelcome {   /*start button on welcome screen*/
-    background: red;
     margin: 5px auto;
-    padding: 10px;
     border: 1px solid black;
-    border-radius: 10px;
-    cursor: pointer;
     max-width: 200px;
   }
 
@@ -355,6 +352,7 @@ aside {
   /*The game screen CSS is below*/
 
   .gameTitle {
+    height: 40px;
     text-align: center;
     padding: 20px;
     color: #7c1a1a;
@@ -386,15 +384,15 @@ aside {
   }
 
   .megaBoard {
-    background: #d4cfcd;
+    background: lightyellow;
     /*background: purple;*/
     width: 590px;
     height: 590px;
-    border: 0px solid black;
     box-sizing: content-box;
 
     margin: 0 auto;
-    border: 0px solid #f9f6f9;
+    padding: 10px;
+    border: 1px solid black;
     border-radius: 20px;
 
     position: static;
@@ -410,7 +408,7 @@ aside {
   }
 
   .gameButton {
-    background: red;
+    background: #ff3f3f;
     margin-top: 5px;
     padding: 5px;
     border: 1px solid black;

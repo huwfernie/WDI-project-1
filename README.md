@@ -8,7 +8,6 @@
 It’s currently a two player game. You can enter your own name, or stick with the automatic values of “player 1” and “player 2”.
 
 
-Welcome screen
 ![welcome](./images/screenShot1.png)
 
 ####Rules

@@ -5,7 +5,7 @@
 
 *As played by bored kids across the world...*
 
-It’s currently a two player game. You can enter your own name, or stick with the automatic values of “player 1” and “player 2”.
+It’s currently a two player game. You can enter your own name, or stick with the automatic values of “player 1” and “player 2”. You can also choose the game board size on this screen.
 
 
 ![welcome](./images/screenShot1.png)
@@ -33,8 +33,8 @@ As the game is played, if you close a square it will be filled with your initial
 Each time a line is drawn there is a short pencil sound, a win gets a Ta-Daa sound and there is a trumpet for a draw.
 
 ####The build
-HTML 5, CSS and jQuery were used to create the whole game.
-The Google Web Font 'Permanent Marker' has been used to style the game.
+- HTML 5, CSS and jQuery were used to create the whole game.
+- The Google Web Font 'Permanent Marker' has been used to style the game.
 
 ![Mobile](./images/screenShot3.png)
 
@@ -44,4 +44,6 @@ The biggest challenge from the game was getting jquery to build the board and th
 
 I sorted the problem by giving each element of the board an ascending ID number and then used the number of elements in each row to figure out which box to address.
 
-Generating a simple style that worked on mobile and desktop was also a challenge.
+Generating a simple style that worked on mobile and desktop was also a challenge, I'm happy with both sites as they are.
+
+Lastly changing the radio buttons styling for picking a board size would have been nice.

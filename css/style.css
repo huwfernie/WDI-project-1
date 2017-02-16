@@ -5,10 +5,9 @@
 }*/
 
 body {
-  background-color: #ae9898;
-  background-color: blue;
+
   font-family: 'Permanent Marker', cursive;
-  font-size: 25px;
+  font-size: 30px;
   margin: 0 auto;
   height: 100vh;
   background-image: url(../images/tabletop.jpg);
@@ -188,6 +187,7 @@ aside {
 
 #left, #right {
   color: #e7e729;
+  color: #6da2e6;
   background: inherit;
   margin-top: 25px;
   text-shadow: 2px 2px black;
@@ -214,11 +214,9 @@ aside {
   left: 20px;
 
 
-  /*cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;*/
-  /*transform: rotate(-30deg);*/
-  /*margin-left: 430px;
 
-  left: 00px;*/
+
+
 }
 
 .notebook {
@@ -229,6 +227,8 @@ aside {
   position: relative;
   top: 100px;
   left: 330px;
+  transform: rotate(-10deg);
+  cursor: url(../images/pencilMedium.png) 10 113,url(../images/pencilSmall.png) 4 30,auto;
 }
 
 .gameButton {
@@ -374,6 +374,7 @@ aside {
     width: 160px;
     float: none;
     color: #e7e729;
+    color: #6da2e6;
     background: inherit;
     margin-top: 5px;
     text-shadow: 2px 2px black;
@@ -405,6 +406,7 @@ aside {
     background-image: none;
     background-size: cover;
     position: static;
+    transform: rotate(0deg);
   }
 
   .gameButton {

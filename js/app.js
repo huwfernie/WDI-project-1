@@ -5,26 +5,25 @@ dots.setup = function() {
   console.log('setup');
   console.log(this);
 
-  this.x = 4;  // x and y are the number of boxes to make
-  this.y = 4;  // on the board
+  // this.Xs=null;
 
   this.xElements = null;  // these are the elements needed to make
   this.yElements = null;  // the boxes
 
-  console.log('Make the board now');
-  this.makeBoard();
+  // console.log('Make the board now');
+  // this.makeBoard();
 
   // run this on load!!
-  this.player1 = {name: 'Player 1', score: 0, color: '#e7e729'};
+  this.player1 = {name: 'Player 1', score: 0, color: '#6da2e6'};
   this.player2 = {name: 'Player 2', score: 0, color: '#c51414'};
   this.playerNow = 1;
   this.playerNowName = null;
   this.playerNowColor = null;
   this.playCount = null;
-  this.$active = $('.active');
+  // this.$active = $('.active');
   this.$reset = $('#resetButton');
-  this.$topBar = $('.topBar');
-  this.$sideBar = $('.sideBar');
+  // this.$topBar = $('.topBar');
+  // this.$sideBar = $('.sideBar');
   this.$middle = $('#middle');
   this.$middleEdit = $('#middleEdit');
   this.$right = $('#right');
@@ -32,30 +31,33 @@ dots.setup = function() {
   this.freeGo = 0;
   this.$startAgain = $('#startAgain');
   this.$startGame = $('#startGameWelcome');
-  this.$centerpiece = $('.centerpiece');
+//  this.$centerpiece = $('.centerpiece');
   this.$welcome = $('.welcome');
   this.$game = $('.game');
 
-  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+//  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
 
   // create an anon. function for each click on the sideBars
   // and-or top-bars
-  this.$active.on('click', function(e) {
-    console.log('click');
-    if (dots.amIActive(e)) {                 // if bar is clickable : active
-      dots.changeBarClassesAfterClick(e);    // change class from active to clicked
-      dots.lowerTheClass(e);                 // reads the html number and lowers it!
-      dots.changePlayer();
-      dots.changeCursor();
-      dots.whoWins();
-    }// end of amIActive
-  }).bind(this);// end of this.$active.on(...
+  // this.$active.on('click', function(e) {
+  //   console.log('click');
+  //   if (dots.amIActive(e)) {                 // if bar is clickable : active
+  //     dots.changeBarClassesAfterClick(e);    // change class from active to clicked
+  //     dots.lowerTheClass(e);                 // reads the html number and lowers it!
+  //     dots.changePlayer();
+  //     dots.changeCursor();
+  //     dots.whoWins();
+  //   }// end of amIActive
+  // }).bind(this);// end of this.$active.on(...
 
 
 
   // add a listener to the start Game button
   this.$startGame.on('click', () => {
     console.log('click start');
+    const val = $(`input[name='boardSize']:checked`). val();
+    console.log(`baordSize is ${val}`);
+    this.awesomeFunction(val);
     this.player1.name = $('#player1').val() || this.player1.name;
     this.player2.name = $('#player2').val() || this.player2.name;
     // console.log(this.player1);
@@ -75,6 +77,11 @@ dots.setup = function() {
   //add a listener to the start again button
   this.$startAgain.on('click', () => {
     console.log('start Again');
+
+    //$('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
+    const $mega = $('.megaBoard');
+    $($mega).children('div').remove();
+
     this.$welcome.slideDown(700);
     this.$game.slideUp(700);
     this.player1.name = 'Player 1';
@@ -96,8 +103,37 @@ dots.setup = function() {
 
 
 
+// Oh Shit, here we go!
+dots.awesomeFunction = function awesomeFunction(val) {
 
+  this.x = val;
+  this.y = this.x;
 
+  console.log('Make the board now');
+  this.makeBoard();
+
+  // run this on load!!
+
+  this.$active = $('.active');
+  //this.$reset = $('#resetButton');
+  this.$topBar = $('.topBar');
+  this.$sideBar = $('.sideBar');
+  this.$centerpiece = $('.centerpiece');
+  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+
+  // create an anon. function for each click on the sideBars
+  // and-or top-bars
+  this.$active.on('click', function(e) {
+    console.log('click');
+    if (dots.amIActive(e)) {                 // if bar is clickable : active
+      dots.changeBarClassesAfterClick(e);    // change class from active to clicked
+      dots.lowerTheClass(e);                 // reads the html number and lowers it!
+      dots.changePlayer();
+      dots.changeCursor();
+      dots.whoWins();
+    }// end of amIActive
+  }).bind(this);// end of this.$active.on(...
+};
 
 
 
@@ -125,6 +161,9 @@ dots.amIActive = function amIActive(e) {
 
 dots.reset = function reset() {
   console.log('reset button');
+
+
+
   this.$topBar.removeClass('clicked').addClass('active');
   this.$sideBar.removeClass('clicked').addClass('active');
   this.$centerpiece.html('4').css('visibility', 'hidden');
@@ -218,9 +257,9 @@ dots.changePlayer = function changePlayer() {
 dots.changeCursor = function changeCursor() {
   console.log('changeCursor');
   if (this.playerNow === 2){
-    $('.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
+    $('.notebook').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
   } else {
-    $('.megaBoard').css('cursor', 'url(images/pencilMedium.png) 10 113,url(images/pencilSmall.png) 4 30,auto');
+    $('.notebook').css('cursor', 'url(images/pencilMedium.png) 10 113,url(images/pencilSmall.png) 4 30,auto');
   }
 };
 

@@ -6,11 +6,13 @@
 
 body {
   background-color: #ae9898;
-  background-color: white;
+  background-color: blue;
   font-family: 'Permanent Marker', cursive;
   font-size: 25px;
   margin: 0 auto;
+  height: 100vh;
   background-image: url(../images/tabletop.jpg);
+  background-size: cover;
   /*overflow: hidden;*/
 }
 
@@ -18,21 +20,20 @@ body {
   width: 90%;
   text-align: center;
   background: lightyellow;
+  background: none;
   margin: 0 auto;
-  height: 900px;
+  max-height: 700px;
   width: 1400px;
-  background-image: url(../images/tabletop.jpg);
 }
 
 .game {
  display: none;
- background-size: cover;
- height: 800px;
+ max-height: 800px;
  width: 1400px;
  position: relative;
  margin: 0 auto;
  background: lightgreen;
- background-image: url(../images/tabletop.jpg);
+ background: none;
 }
 
 .sideBar, .topBar, .centerpiece, .node {
@@ -54,6 +55,7 @@ body {
   background: inherit;
   height: 60px;
   width: 60px;
+  text-shadow: 2px 2px black;
 }
 
 .node {
@@ -249,4 +251,176 @@ aside {
   content: "";
   display: table;
   clear: both;
+}
+
+
+/*MEDIA QUERY-----------------------------------------------------------------*/
+@media screen and (max-width: 600px) {
+
+
+  body {
+    background-color: white;
+    font-size: 16px;
+    /*height: 100vh;*/
+    background-image: none;
+    background: lightyellow;
+  }
+
+
+  .welcome {
+    text-align: center;
+    background: lightyellow;
+    background: inherit;
+    margin: 0 auto;
+    /*height: 360px;*/
+    width: 100%;
+  }
+
+  .game {
+   display: none;
+   /*background-size: cover;*/
+   /*height: 800px;*/
+   max-width: 320px;
+   position: static;
+   margin: 0 auto;
+   background: inherit;
+  }
+
+
+  /*Welcome Screen CSS starts now*/
+  .playerNamesHolder {
+    width: 320px;
+    margin: 0 auto;
+    /*background: black;*/
+
+  }
+
+  .playerNamesSection {
+    background: inherit;
+    width: 320px;
+    text-align: center;
+  }
+
+  .playerNamesMiddle {
+    /*background: orange;*/
+    width: 320px;
+    margin: 0 0px;
+
+    text-align: center;
+  }
+
+  .instructions {
+    text-align: center;
+    margin: 20px auto;
+    width: 100%;
+    color: #7c1a1a;
+    /*background: lightblue;*/
+  }
+
+  #instructions {
+    text-decoration: underline;
+    font-size: 30px;
+  }
+
+  header {
+    text-align: center;
+    padding: 20px 0;
+    color: #7c1a1a;
+    font-size: 30px;
+  }
+
+  .inputNames {
+    max-width: 200px;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: inherit;
+    text-align: center;
+    background: white;
+  }
+
+  #startGameWelcome {   /*start button on welcome screen*/
+    background: red;
+    margin: 5px auto;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+    max-width: 200px;
+  }
+
+
+
+  /*The game screen CSS is below*/
+
+  .gameTitle {
+    text-align: center;
+    padding: 20px;
+    color: #7c1a1a;
+    font-size: 20px;
+    position: static;
+    /*margin-top: 20px;*/
+  }
+
+  aside {
+    max-width: 318px;
+    border: 0px solid black;
+    text-align: center;
+    float: none;
+    position: static;
+    margin: 10px auto;
+  }
+
+  #left, #right {
+    width: 160px;
+    float: none;
+    color: #e7e729;
+    background: inherit;
+    margin-top: 5px;
+    text-shadow: 2px 2px black;
+    margin: 0 auto;
+  }
+  #right {
+    color: #c51414;
+  }
+
+  .megaBoard {
+    background: #d4cfcd;
+    /*background: purple;*/
+    width: 590px;
+    height: 590px;
+    border: 0px solid black;
+    box-sizing: content-box;
+
+    margin: 0 auto;
+    border: 0px solid #f9f6f9;
+    border-radius: 20px;
+
+    position: static;
+    margin-top: 75px;
+  }
+
+  .notebook {
+    width: 320px;
+    height: auto;
+    background-image: none;
+    background-size: cover;
+    position: static;
+  }
+
+  .gameButton {
+    background: red;
+    margin-top: 5px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .forGameButtons {
+    text-align: center;;
+  }
 }

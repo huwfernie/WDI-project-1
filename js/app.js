@@ -5,8 +5,8 @@ dots.setup = function() {
   console.log(`setup`);
   console.log(this);
 
-  this.x = 6;  // x and y are the number of boxes to make
-  this.y = 6;  // on the board
+  this.x = 3;  // x and y are the number of boxes to make
+  this.y = 3;  // on the board
 
   this.xElements = null;  // these are the elements needed to make
   this.yElements = null;  // the boxes
@@ -64,7 +64,8 @@ dots.setup = function() {
     this.$middle.html(`New Game - You're up `);
     this.$middleEdit.html(this.player1.name);
     $('.welcome').slideUp(700);
-    $('.game').css('display', 'block');
+    this.$game.slideDown(700);
+    // $('.game').css('display', 'block');
   }).bind(this);
 
 
@@ -110,23 +111,19 @@ dots.setup = function() {
 
 
 
-
-
-
 // All the functions now! -------------------------------
 
 dots.amIActive = function amIActive(e) {
   return $(e.target).hasClass('active');
 }; // end of amIActive function
 
+
+
 dots.reset = function reset() {
-  console.log(`reset button`);
-  this.$topBar.removeClass('clicked');
-  this.$topBar.addClass('active');
-  this.$sideBar.removeClass('clicked');
-  this.$sideBar.addClass('active');
-  this.$centerpiece.html(`4`);
-  this.$centerpiece.css('visibility', 'hidden');
+  console.log('reset button');
+  this.$topBar.removeClass('clicked').addClass('active');
+  this.$sideBar.removeClass('clicked').addClass('active');
+  this.$centerpiece.html('4').css('visibility', 'hidden');
   this.player1.score = 0;
   this.player2.score = 0;
   this.updatePlayerScores();
@@ -134,8 +131,10 @@ dots.reset = function reset() {
   this.$middleEdit.html(this.player1.name);
 };// end of reset function
 
+
+
 dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
-  console.log(`changeClassesAfterClick`);
+  console.log('changeClassesAfterClick');
   this.playThis(`sounds/pen.m4a`); //play sound
   $(e.target).addClass('clicked');
   $(e.target).removeClass('active');
@@ -145,7 +144,7 @@ dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
 
 // function that plays anything with the file path passed to is as (audio)
 dots.playThis = function playThis(audio) {
-  console.log(`audio is ${audio}`);
+  console.log(`audio playing ${audio}`);
   audio = new Audio(audio);
   console.log(audio);
   audio.play();
@@ -153,63 +152,20 @@ dots.playThis = function playThis(audio) {
 
 
 
-
-
 dots.lowerTheClass = function lowerTheClass(e) {
   if ( $(e.target).hasClass('topBar')  ) {
-    const x = dots.xElements;
+    let x = dots.xElements;
     dots.callMe(e, x);
-    // // change html of elements with id +- dots.xElements
-    // console.log(`what is my topBar ID?`);
-    // const temp = $(e.target).attr('id');
-    //
-    // console.log(`above`);
-    // const aboveMe = parseInt(temp) - this.xElements;
-    // const $aboveMe = $(`#${aboveMe}`);
-    // let upScore = $aboveMe.html();
-    // upScore--;
-    // $aboveMe.html(upScore);
-    // if (upScore === 0){
-    //   this.claimSquare($aboveMe);
-    // }
-    //
-    // console.log(`below`);
-    // const belowMe = parseInt(temp) + this.xElements;
-    // const $belowMe = $(`#${belowMe}`);
-    // let downScore = $belowMe.html();
-    // downScore--;
-    // $belowMe.html(downScore);
-    // if (downScore === 0){
-    //   this.claimSquare($belowMe);
-    // }
+    x = -dots.xElements;
+    dots.callMe(e, x);
   } else {
-    const x = 1;
+    let x = 1;
     dots.callMe(e, x);
-  //   // change html of elements with id +- 1
-  //   console.log(`what is my sideBar ID?`);
-  //   const temp = $(e.target).attr('id');
-  //   console.log(`how about .. ${temp}`);
-  //   //
-  //   const leftOfMe = parseInt(temp) - 1;
-  //   const $leftOfMe = $(`#${leftOfMe}`);
-  //   let leftScore = $leftOfMe.html();
-  //   leftScore--;
-  //   $leftOfMe.html(leftScore);
-  //   if (leftScore === 0){
-  //     this.claimSquare($leftOfMe);
-  //   }
-  //   //
-  //   console.log(`rightOfMe`);
-  //   const rightOfMe = parseInt(temp) + 1;
-  //   const $rightOfMe = $(`#${rightOfMe}`);
-  //   let rightScore = $rightOfMe.html();
-  //   rightScore--;
-  //   $rightOfMe.html(rightScore);
-  //   if (rightScore === 0){
-  //     this.claimSquare($rightOfMe);
-  //   }
+    x = -1;
+    dots.callMe(e, x);
   }
 };
+
 
 
 dots.callMe = function callMe(e, x) {
@@ -219,31 +175,29 @@ dots.callMe = function callMe(e, x) {
   console.log(`what is my sideBar ID?`);
   const temp = $(e.target).attr('id');
   console.log(`how about .. ${temp}`);
-  const aboveMe = parseInt($(e.target).attr('id')) - x;
+  // const aboveMe = parseInt($(e.target).attr('id')) - x;
   const belowMe = parseInt($(e.target).attr('id')) + x;
-  const $aboveMe = $(`#${aboveMe}`);
+  // const $aboveMe = $(`#${aboveMe}`);
   const $belowMe = $(`#${belowMe}`);
-  let upScore = $aboveMe.html();
+  // let upScore = $aboveMe.html();
   let downScore = $belowMe.html();
-  upScore--;
+  // upScore--;
   downScore--;
-  $aboveMe.html(upScore);
+  // $aboveMe.html(upScore);
   $belowMe.html(downScore);
-  if (upScore === 0){
-    this.claimSquare($aboveMe);
-  }
+  // if (upScore === 0){
+  //   this.claimSquare($aboveMe);
+  // }
   if (downScore === 0){
     this.claimSquare($belowMe);
   }
 };
 
 
-// playerIndex = 0; // Why is this here!!!!???????
 
 dots.changePlayer = function changePlayer() {
   this.playCount = this.playCount + 1 - this.freeGo;
-  //playerIndex = playCount%2;
-  //console.log(`player index is ${playerIndex}`);
+
   if (this.playCount%2 === 1) {
     this.playerNowName = this.player2.name;
     this.playerNowColor = this.player2.color;
@@ -256,6 +210,9 @@ dots.changePlayer = function changePlayer() {
     //alert(playerNowName);
   }
 
+
+
+  // freeGo is 1 after you close a square and get an extra turn
   if (this.freeGo === 1) {
     this.$middle.html(`Play again `);
   } else {
@@ -265,29 +222,26 @@ dots.changePlayer = function changePlayer() {
   this.freeGo = 0;
 };
 
+
+
 dots.changeCursor = function changeCursor() {
+  console.log('changeCursor');
   if (this.playerNow === 2){
-    console.log('changeCursor');
-    $('.dots.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
+    $('.megaBoard').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
   } else {
     $('.megaBoard').css('cursor', 'url(images/pencilMedium.png) 10 113,url(images/pencilSmall.png) 4 30,auto');
   }
 };
 
+
+
 dots.claimSquare = function claimSquare(thisOne) {
   // playerScores[playerNow]
   this.freeGo = 1;
   const initial = ((this.playerNowName).split(''))[0];
-  thisOne.html(initial);
-  thisOne.css('visibility', 'visible');
-  thisOne.css('color', this.playerNowColor);
-  if (this.playerNow === 2) {
-    this.player2.score += 1;
-  } else {
-    this.player1.score += 1;
-  }
+  thisOne.html(initial).css('visibility', 'visible').css('color', this.playerNowColor);
+  (this.playerNow === 2) ? this.player2.score += 1 : this.player1.score += 1;
   this.updatePlayerScores();
-
 };
 
 dots.updatePlayerScores = function updatePlayerScores() {
@@ -296,7 +250,7 @@ dots.updatePlayerScores = function updatePlayerScores() {
 };
 
 dots.whoWins = function whoWins(){
-  if (this.player1.score + this.player2.score === ( this.x*this.y ) ){  // all squares guessed
+  if (this.player1.score + this.player2.score === (this.x*this.y) ){  // all squares guessed
     console.log(`we have a winner`);
     this.$middleEdit.html('');
     if (this.player1.score === this.player2.score) {
@@ -318,23 +272,17 @@ dots.whoWins = function whoWins(){
 
 // End of funcitons, this space is for the funnky stuff!! -----------------
 
-//this is some funky stuff, don't expect it to be here forever!! ----------
+
 dots.makeBoard = function makeBoard() {
- // takes x and y and sets dots.xElements and dots.yElements
+ // takes x and y and sets xElements and yElements
   this.xElements = 1 + (2*this.x);
   this.yElements = 1 + (2*this.y);
-
-
-
   console.log(this.xElements);  //test
   console.log(this.yElements);  // test
-
-  let idCount = 1;  // counter for giving each element a unique id
-
  // the start of the bit that makes the mega-board board!
 
  //board width = 10 + 135 + 10 px + 145 for each new square
-
+  let idCount = 1;  // counter for giving each element a unique id
   const boardWidth = 80 + ((this.x-1)*70);
   const boardHeight = 80 + ((this.y-1)*70);
 
@@ -353,14 +301,11 @@ dots.makeBoard = function makeBoard() {
     let aIndex = null;
     let row = null;
     for (let j=0; j<this.xElements; j++) {
-
       row = i%2 === 0 ? evenRow : oddRow;
       aIndex = j%2 === 0 ? 0 : 1;
       thisDiv = row[aIndex];
-
-
       // finally create the div with class of thisDiv and id of idCount
-      console.log(`buliding you a ${thisDiv} with id ${idCount}`);
+      //console.log(`buliding you a ${thisDiv} with id ${idCount}`);
       $('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
     // console.log(`id count ${idCount}`);
       idCount++;
@@ -373,9 +318,9 @@ dots.makeBoard = function makeBoard() {
 
 
 
-
 //$('.welcome').css('height', $(document).height());
 //$('.game').css("height", $(document).height());
+
 
 
 $(dots.setup.bind(dots));

@@ -2,16 +2,14 @@ var dots = dots || {};
 
 
 dots.setup = function() {
-  console.log('setup');
-  console.log(this);
+  // console.log('setup');
+  // console.log(this);
 
   // this.Xs=null;
 
   this.xElements = null;  // these are the elements needed to make
   this.yElements = null;  // the boxes
 
-  // console.log('Make the board now');
-  // this.makeBoard();
 
   // run this on load!!
   this.player1 = {name: 'Player 1', score: 0, color: '#6da2e6'};
@@ -56,7 +54,7 @@ dots.setup = function() {
   this.$startGame.on('click', () => {
     console.log('click start');
     const val = $(`input[name='boardSize']:checked`). val();
-    console.log(`baordSize is ${val}`);
+    // console.log(`baordSize is ${val}`);
     this.awesomeFunction(val);
     this.player1.name = $('#player1').val() || this.player1.name;
     this.player2.name = $('#player2').val() || this.player2.name;
@@ -79,8 +77,8 @@ dots.setup = function() {
     console.log('start Again');
 
     //$('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
-    const $mega = $('.megaBoard');
-    $($mega).children('div').remove();
+    const $board = $('.megaBoard');
+    $($board).children('div').remove();
 
     this.$welcome.slideDown(700);
     this.$game.slideUp(700);
@@ -153,17 +151,15 @@ dots.awesomeFunction = function awesomeFunction(val) {
 
 // All the functions now! -------------------------------
 
+// boolian to check if a bar has been clicked before.
 dots.amIActive = function amIActive(e) {
   return $(e.target).hasClass('active');
 }; // end of amIActive function
 
 
-
+// reset function, also called during start-Again.
 dots.reset = function reset() {
   console.log('reset button');
-
-
-
   this.$topBar.removeClass('clicked').addClass('active');
   this.$sideBar.removeClass('clicked').addClass('active');
   this.$centerpiece.html('4').css('visibility', 'hidden');
@@ -175,7 +171,7 @@ dots.reset = function reset() {
 };// end of reset function
 
 
-
+// changes a bar class from active to clicked on click.
 dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
   console.log('changeClassesAfterClick');
   this.playThis(`sounds/pen.m4a`); //play sound
@@ -187,14 +183,16 @@ dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
 
 // function that plays anything with the file path passed to is as (audio)
 dots.playThis = function playThis(audio) {
-  console.log(`audio playing ${audio}`);
+  //console.log(`audio playing ${audio}`);
   audio = new Audio(audio);
-  console.log(audio);
+  //console.log(audio);
   audio.play();
 };
 
 
-
+// looks for the number of sides completed in the squares above or beside the
+// bar just clicked and lowers the count by one, also calls claimSquare if the
+// count reaches zero.
 dots.lowerTheClass = function lowerTheClass(e) {
   if ( $(e.target).hasClass('topBar')  ) {
     let x = dots.xElements;
@@ -210,9 +208,9 @@ dots.lowerTheClass = function lowerTheClass(e) {
 };
 
 
-
+// Call Me is the second half of the lowerTheClass function
 dots.callMe = function callMe(e, x) {
-  console.log('callMe');
+  //console.log('callMe');
   const belowMe = parseInt($(e.target).attr('id')) + x;
   const $belowMe = $(`#${belowMe}`);
   let downScore = $belowMe.html();
@@ -232,6 +230,9 @@ dots.changePlayer = function changePlayer() {
     this.playerNowName = this.player2.name;
     this.playerNowColor = this.player2.color;
     this.playerNow = 2;
+    if (this.playerNowName === 'comp') {
+      alert('AI isnt working yet');
+    }
     //alert(playerNowName);
   } else {
     this.playerNowName = this.player1.name;
@@ -266,7 +267,6 @@ dots.changeCursor = function changeCursor() {
 
 
 dots.claimSquare = function claimSquare(thisOne) {
-  // playerScores[playerNow]
   this.freeGo = 1;
   const initial = ((this.playerNowName).split(''))[0];
   thisOne.html(initial).css('visibility', 'visible').css('color', this.playerNowColor);
@@ -305,8 +305,9 @@ dots.makeBoard = function makeBoard() {
  // takes x and y and sets xElements and yElements
   this.xElements = 1 + (2*this.x);
   this.yElements = 1 + (2*this.y);
-  console.log(this.xElements);  //test
-  console.log(this.yElements);  // test
+  //console.log(this.xElements);  //test
+  //console.log(this.yElements);  // test
+  
  // the start of the bit that makes the mega-board board!
 
  //board width = 10 + 135 + 10 px + 145 for each new square

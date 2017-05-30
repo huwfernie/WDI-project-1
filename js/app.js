@@ -18,10 +18,7 @@ dots.setup = function() {
   this.playerNowName = null;
   this.playerNowColor = null;
   this.playCount = null;
-  // this.$active = $('.active');
   this.$reset = $('#resetButton');
-  // this.$topBar = $('.topBar');
-  // this.$sideBar = $('.sideBar');
   this.$middle = $('#middle');
   this.$middleEdit = $('#middleEdit');
   this.$right = $('#right');
@@ -29,40 +26,22 @@ dots.setup = function() {
   this.freeGo = 0;
   this.$startAgain = $('#startAgain');
   this.$startGame = $('#startGameWelcome');
-//  this.$centerpiece = $('.centerpiece');
   this.$welcome = $('.welcome');
   this.$game = $('.game');
 
-//  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
-
-  // create an anon. function for each click on the sideBars
-  // and-or top-bars
-  // this.$active.on('click', function(e) {
-  //   console.log('click');
-  //   if (dots.amIActive(e)) {                 // if bar is clickable : active
-  //     dots.changeBarClassesAfterClick(e);    // change class from active to clicked
-  //     dots.lowerTheClass(e);                 // reads the html number and lowers it!
-  //     dots.changePlayer();
-  //     dots.changeCursor();
-  //     dots.whoWins();
-  //   }// end of amIActive
-  // }).bind(this);// end of this.$active.on(...
-
-
-
   // add a listener to the start Game button
   this.$startGame.on('click', () => {
-    console.log('click start');
+    // console.log('click start');
     const val = $(`input[name='boardSize']:checked`). val();
     // console.log(`baordSize is ${val}`);
-    this.awesomeFunction(val);
+    this.generateBoard(val);
     this.player1.name = $('#player1').val() || this.player1.name;
     this.player2.name = $('#player2').val() || this.player2.name;
     // console.log(this.player1);
     this.updatePlayerScores();
-    this.$middle.html(`New Game - You're up `);
+    this.$middle.html('New Game - You\'re up ');
     this.$middleEdit.html(this.player1.name);
-    $('.welcome').slideUp(700);
+    this.$welcome.slideUp(700);
     this.$game.slideDown(700);
   }).bind(this);
 
@@ -74,9 +53,8 @@ dots.setup = function() {
 
   //add a listener to the start again button
   this.$startAgain.on('click', () => {
-    console.log('start Again');
+    // console.log('start Again');
 
-    //$('.megaBoard').append(`<div class=${thisDiv} id=${idCount}>`);
     const $board = $('.megaBoard');
     $($board).children('div').remove();
 
@@ -95,34 +73,26 @@ dots.setup = function() {
 
 
 
+// functions used in or called after setup -------------------------------------
 
-
-
-
-
-
-// Oh Shit, here we go!
-dots.awesomeFunction = function awesomeFunction(val) {
+// Here we go!
+dots.generateBoard = function generateBoard(val) {
 
   this.x = val;
   this.y = this.x;
 
-  console.log('Make the board now');
+  // console.log('Make the board now');
   this.makeBoard();
 
-  // run this on load!!
-
   this.$active = $('.active');
-  //this.$reset = $('#resetButton');
   this.$topBar = $('.topBar');
   this.$sideBar = $('.sideBar');
   this.$centerpiece = $('.centerpiece');
-  this.$centerpiece.html('4'); // get rid of this later, it puts 4's into each centerpiece
+  this.$centerpiece.html('4');
 
-  // create an anon. function for each click on the sideBars
-  // and-or top-bars
+  // create an anon. function for each click on the sideBars and top-bars
   this.$active.on('click', function(e) {
-    console.log('click');
+    // console.log('click');
     if (dots.amIActive(e)) {                 // if bar is clickable : active
       dots.changeBarClassesAfterClick(e);    // change class from active to clicked
       dots.lowerTheClass(e);                 // reads the html number and lowers it!
@@ -131,7 +101,7 @@ dots.awesomeFunction = function awesomeFunction(val) {
       dots.whoWins();
     }// end of amIActive
   }).bind(this);// end of this.$active.on(...
-};
+}; // end of generateBoard
 
 
 
@@ -159,7 +129,7 @@ dots.amIActive = function amIActive(e) {
 
 // reset function, also called during start-Again.
 dots.reset = function reset() {
-  console.log('reset button');
+  // console.log('reset button');
   this.$topBar.removeClass('clicked').addClass('active');
   this.$sideBar.removeClass('clicked').addClass('active');
   this.$centerpiece.html('4').css('visibility', 'hidden');
@@ -173,10 +143,9 @@ dots.reset = function reset() {
 
 // changes a bar class from active to clicked on click.
 dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
-  console.log('changeClassesAfterClick');
-  this.playThis(`sounds/pen.m4a`); //play sound
-  $(e.target).addClass('clicked');
-  $(e.target).removeClass('active');
+  // console.log('changeClassesAfterClick');
+  this.playThis('sounds/pen.m4a'); //play sound
+  $(e.target).addClass('clicked').removeClass('active');
 };
 
 
@@ -185,7 +154,6 @@ dots.changeBarClassesAfterClick = function changeBarClassesAfterClick(e) {
 dots.playThis = function playThis(audio) {
   //console.log(`audio playing ${audio}`);
   audio = new Audio(audio);
-  //console.log(audio);
   audio.play();
 };
 
@@ -208,7 +176,7 @@ dots.lowerTheClass = function lowerTheClass(e) {
 };
 
 
-// Call Me is the second half of the lowerTheClass function
+// callMe is the second half of the lowerTheClass function
 dots.callMe = function callMe(e, x) {
   //console.log('callMe');
   const belowMe = parseInt($(e.target).attr('id')) + x;
@@ -230,9 +198,6 @@ dots.changePlayer = function changePlayer() {
     this.playerNowName = this.player2.name;
     this.playerNowColor = this.player2.color;
     this.playerNow = 2;
-    if (this.playerNowName === 'comp') {
-      alert('AI isnt working yet');
-    }
     //alert(playerNowName);
   } else {
     this.playerNowName = this.player1.name;
@@ -256,7 +221,7 @@ dots.changePlayer = function changePlayer() {
 
 
 dots.changeCursor = function changeCursor() {
-  console.log('changeCursor');
+  // console.log('changeCursor');
   if (this.playerNow === 2){
     $('.notebook').css('cursor', 'url(images/pencilMediumRed.png) 10 113,url(images/pencilSmallRed.png) 4 30,auto');
   } else {
@@ -281,24 +246,24 @@ dots.updatePlayerScores = function updatePlayerScores() {
 
 dots.whoWins = function whoWins(){
   if (this.player1.score + this.player2.score === (this.x*this.y) ){  // all squares guessed
-    console.log('we have a winner');
+    // console.log('we have a winner');
     this.$middleEdit.html('');
     if (this.player1.score === this.player2.score) {
       this.$middle.html('We have a draw!!!');
-      this.playThis(`sounds/trumpet.m4a`);
+      this.playThis('sounds/trumpet.m4a');
     } else if (this.player1.score > this.player2.score) {
       this.$middle.html(`${this.player1.name} wins`);
-      this.playThis(`sounds/tada.mp3`);
+      this.playThis('sounds/tada.mp3');
     } else { // player[1] > player[0]
       this.$middle.html(`${this.player2.name} wins`);
-      this.playThis(`sounds/tada.mp3`);
+      this.playThis('sounds/tada.mp3');
     }
   }
 }; // end of whoWins
 
 
 
-// End of funcitons, this space is for the funnky stuff!! -----------------
+// End of game logic funcitons, below is making the board  -----------------
 
 
 dots.makeBoard = function makeBoard() {
@@ -307,8 +272,8 @@ dots.makeBoard = function makeBoard() {
   this.yElements = 1 + (2*this.y);
   //console.log(this.xElements);  //test
   //console.log(this.yElements);  // test
-  
- // the start of the bit that makes the mega-board board!
+
+ // creat a div, class is "megaBoard", width and height are defined.
 
  //board width = 10 + 135 + 10 px + 145 for each new square
   let idCount = 1;  // counter for giving each element a unique id
@@ -317,7 +282,6 @@ dots.makeBoard = function makeBoard() {
 
   $('.megaBoard').css('width', `${boardWidth}px`);
   $('.megaBoard').css('height', `${boardHeight}px`);
-
 
   const evenRow = ['node','topBar'];
   const oddRow = ['sideBar','centerpiece'];
@@ -344,12 +308,6 @@ dots.makeBoard = function makeBoard() {
     $('.topBar').addClass('active');
   }
 }; // end of make board
-
-
-
-//$('.welcome').css('height', $(document).height());
-//$('.game').css("height", $(document).height());
-
 
 
 $(dots.setup.bind(dots));

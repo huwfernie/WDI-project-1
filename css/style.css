@@ -312,8 +312,8 @@ aside {
 
   .instructions {
     text-align: center;
-    margin: 20px auto;
-    width: 100%;
+    margin: 20px 10px;
+    width: 95%;
     color: #7c1a1a;
     /*background: lightblue;*/
   }

@@ -3,12 +3,13 @@
 
 ## GA WDI London - Project 1
 
-*As played by bored kids across the world...*
+*The Welcome screen*
 
-It’s currently a two player game. You can enter your own name, or stick with the automatic values of “player 1” and “player 2”. You can also choose the game board size on this screen.
+It’s currently a two player game. On the welcome screen you can enter your own names, or stick with the automatic values of “player 1” and “player 2”. You can also choose the game board size on this screen.
 
 
 ![welcome](./images/screenShot1.png)
+
 
 ####Rules
 
